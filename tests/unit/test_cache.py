@@ -1,8 +1,7 @@
-import unittest
+from learncentive.src.cache import create_cached_random_bank
+from learncentive.tests.test_client import client
 
-class TestCache(unittest.TestCase):
-    pass
+random_bank = create_cached_random_bank()
 
-    def test_create_cached_random_bank(self):
-        
-        pass
+def test_access_values(client):
+    assert len(random_bank) == 1000, 'cant access cache'
