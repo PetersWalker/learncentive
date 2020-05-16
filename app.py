@@ -1,4 +1,4 @@
-'''The app module contains the instance of the Flask App, Cache, API endpoints
+'''This module contains the instance of the Flask App, Cache, API endpoints
 and vanilla routes'''
 
 from flask import Flask
@@ -22,7 +22,7 @@ api.add_resource(ProblemSet, '/api/problem_set/<int:amount_of_probs>')
 #VANILLA ROUTES
 @app.route('/')
 def home():
-    return "home"
+    return "learncentive"
 
 #CONFIGURATIONS, FLASK_APP & FLASK_ENV settings are in .flaskenv
 app.config.update(
