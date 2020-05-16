@@ -22,7 +22,7 @@ api.add_resource(ProblemSet, '/api/problem_set/<int:amount_of_probs>')
 #VANILLA ROUTES
 @app.route('/')
 def home():
-    return "poops"
+    return "home"
 
 #CONFIGURATIONS, FLASK_APP & FLASK_ENV settings are in .flaskenv
 app.config.update(
