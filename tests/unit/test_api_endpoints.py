@@ -16,4 +16,8 @@ def test_problem_set_returns_valid_arithmetic_expression(client):
 
 def test_problem_set_returns_5_problems(client):
     api_response_dict = client.get('/api/problem_set/5').get_json()
-    #assert len(api_response_dict) == 5
+    assert len(api_response_dict) == 5
+
+def test_response_is_in_json_format(client):
+    api_response_dict = client.get('/api/problem_set/5')
+    assert api_response_dict.is_json()

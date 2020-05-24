@@ -3,12 +3,13 @@ and vanilla routes'''
 
 from flask import Flask
 from flask_restful import Api
-
+from flask_cors import CORS
 from learncentive.resource.problem_set import ProblemSet
 from learncentive.src.cache import cache
 
 #FLASK APP
 app = Flask('app')
+CORS(app)
 
 #initialize cache object with app
 
