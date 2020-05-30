@@ -20,7 +20,8 @@ class Problem():
         problem_catalog = {
             'multiplication': MultiplicationProblem,
             'addition': AdditionProblem,
-            'subtraction': SubtractionProblem
+            'subtraction': SubtractionProblem,
+            'division': DivisionProblem
             }
         return problem_catalog[type_of_prob].randomly_generate(random_seed)
 
@@ -28,8 +29,8 @@ class Problem():
 class MultiplicationProblem(Problem):
 
     @classmethod
-    def randomly_generate(cls, random_seed, integers_needed=2):
-        _format_problem(cls, random_seed, operator='*', integers_needed=2,)
+    def randomly_generate(cls, random_seed):
+        _format_problem(cls, random_seed, operator='*', integers_needed=2)
 
 
         return cls
@@ -37,8 +38,8 @@ class MultiplicationProblem(Problem):
 class AdditionProblem(Problem):
 
     @classmethod
-    def randomly_generate(cls, random_seed, integers_needed=2):
-        _format_problem(cls, random_seed, operator='+', integers_needed=2,)
+    def randomly_generate(cls, random_seed):
+        _format_problem(cls, random_seed, operator='+', integers_needed=2)
 
 
         return cls
@@ -47,12 +48,20 @@ class SubtractionProblem(Problem):
 
     @classmethod
     def randomly_generate(cls, random_seed):
-        _format_problem(cls, random_seed, operator='-', integers_needed=2,)
+        _format_problem(cls, random_seed, operator='-', integers_needed=2)
 
         return cls
 
+class DivisionProblem(Problem):
 
-def _format_problem(cls, random_seed, operator, integers_needed, ):
+    @classmethod
+    def randomly_generate(cls, random_seed):
+        _format_problem(cls, random_seed, operator='/', integers_needed=2)
+        cls.answer = round(cls.answer, 3)
+        return cls
+
+
+def _format_problem(cls, random_seed, operator, integers_needed):
     int_1, int_2 = _get_integers_from_cache(random_seed, integers_needed)
     cls.string = '{}{}{}'.format(int_1, operator, int_2)
     cls.answer = eval(cls.string)
