@@ -1,11 +1,7 @@
 from random import randint
-import operator as op
-
 from learncentive.src.cache import random_list_of_integers
 
-
 class Problem():
-#Base class for arithmetic problems
 
     def __init__(self, string='', answer=0):
         self.string = string
@@ -21,53 +17,61 @@ class Problem():
         if random_seed is None:
             raise "no random_seed given"
 
-
         problem_catalog = {
-        'multiplication': MultiplicationProblem,
-        'addition': AdditionProblem
-        }
-
+            'multiplication': MultiplicationProblem,
+            'addition': AdditionProblem,
+            'subtraction': SubtractionProblem
+            }
         return problem_catalog[type_of_prob].randomly_generate(random_seed)
+
+
 class MultiplicationProblem(Problem):
 
     @classmethod
-    def randomly_generate(cls, random_seed):
-        integers_needed = 2
-        int_1, int_2 = _provide_integers(random_seed, integers_needed)
-
-        cls.string = '{}*{}'.format(int_1, int_2)
-        cls.answer = '{}'.format(int_1*int_2)
+    def randomly_generate(cls, random_seed, integers_needed=2):
+        int_1, int_2 = _get_integers_from_cache(random_seed, integers_needed)
+        operator = '*'
+        _format_problem(cls,operator, int_1, int_2)
         next_index_for_problem_set = random_seed + integers_needed
 
         return cls, next_index_for_problem_set
 
 class AdditionProblem(Problem):
-    @classmethod
-    def randomly_generate(cls, random_seed):
-        integers_needed = 2
-        int_1, int_2 = _provide_integers(random_seed, integers_needed)
 
-        cls.string = '{}+{}'.format(int_1, int_2)
-        cls.answer = '{}'.format(int_1+int_2)
+    @classmethod
+    def randomly_generate(cls, random_seed, integers_needed=2):
+        operator = '+'
+        int_1, int_2 = _get_integers_from_cache(random_seed, integers_needed)
+        _format_problem(cls, operator, int_1, int_2)
         next_index_for_problem_set = random_seed + integers_needed
+
         return cls, next_index_for_problem_set
 
-def _provide_integers(random_seed, integers_needed):
+class SubtractionProblem(Problem):
+
+    @classmethod
+    def randomly_generate(cls, random_seed, integers_needed=2):
+        operator = '-'
+        int_1, int_2 = _get_integers_from_cache(random_seed, integers_needed)
+        _format_problem(cls, operator, int_1, int_2)
+        next_index_for_problem_set = random_seed + integers_needed
+
+        return cls, next_index_for_problem_set
+
+
+def _format_problem(cls, operator, int_1, int_2):
+    cls.string = '{}{}{}'.format(int_1, operator, int_2)
+    cls.answer = eval(cls.string)
+
+
+def _get_integers_from_cache(random_seed, integers_needed):
     random_bank = random_list_of_integers()
+
     if random_seed >= len(random_bank) - integers_needed:
         random_seed = 0
     integers = (random_bank[random_seed+i] for i in range(integers_needed))
 
     return integers
 
-
     #need several different types of problems:
     #       mult, div, add, sub, algebra,
-
-    # def _provide_random_integers(amount_needed, random_seed):
-    #     random_bank = create_cached_random_bank()
-    #     list_of_integers = []
-    #     for i in range(amount_needed):
-    #         list_of_integers.append(random_bank[random_seed])
-    #         random_seed += 1
-    #     return list_of_integers

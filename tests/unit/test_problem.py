@@ -14,13 +14,16 @@ def test_init_Problem(client):
     assert (repr(test_problem) == test_problem.string)
 
 def test_randomly_generate_multiplication_problem(client):
-
     test_problem, _ = Problem.generate('multiplication', 999)
+
     assert eval(test_problem.string) == int(test_problem.answer)
 
 def test_randomly_generate_addition_problem(client):
-
     test_problem, _ = Problem.generate('addition')
-    assert test_problem
 
-    #eval(test_problem.string) == int(test_problem.answer)
+    assert eval(test_problem.string) == int(test_problem.answer)
+
+def test_randomly_generate_subtraction_problem(client):
+    test_problem, _ = Problem.generate('subtraction')
+
+    assert test_problem
