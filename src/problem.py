@@ -1,13 +1,11 @@
 from random import randint
 import operator as op
 
-from learncentive.src.cache import create_cached_random_bank
+from learncentive.src.cache import random_list_of_integers
 
 
 class Problem():
 #Base class for arithmetic problems
-
-    dunder = {'+':op.__add__, 'x':op.__mul__}
 
     def __init__(self, string='', answer=0):
         self.string = string
@@ -16,13 +14,60 @@ class Problem():
     def __repr__(self):
         return self.string
 
-    @classmethod
-    def randomly_generate(cls, seed=randint(0, 900)):
-        random_bank = create_cached_random_bank()
+    @staticmethod
+    def generate(type_of_prob, random_seed=randint(0,1000)):
+        if type_of_prob is None:
+            raise "learncentive: No Problem Type Specified"
+        if random_seed is None:
+            raise "no random_seed given"
 
-        int_1 = random_bank[seed]
-        int_2 = random_bank[seed+1]
+
+        problem_catalog = {
+        'multiplication': MultiplicationProblem,
+        'addition': AdditionProblem
+        }
+
+        return problem_catalog[type_of_prob].randomly_generate(random_seed)
+class MultiplicationProblem(Problem):
+
+    @classmethod
+    def randomly_generate(cls, random_seed):
+        integers_needed = 2
+        int_1, int_2 = _provide_integers(random_seed, integers_needed)
 
         cls.string = '{}*{}'.format(int_1, int_2)
         cls.answer = '{}'.format(int_1*int_2)
-        return cls
+        next_index_for_problem_set = random_seed + integers_needed
+
+        return cls, next_index_for_problem_set
+
+class AdditionProblem(Problem):
+    @classmethod
+    def randomly_generate(cls, random_seed):
+        integers_needed = 2
+        int_1, int_2 = _provide_integers(random_seed, integers_needed)
+
+        cls.string = '{}+{}'.format(int_1, int_2)
+        cls.answer = '{}'.format(int_1+int_2)
+        next_index_for_problem_set = random_seed + integers_needed
+        return cls, next_index_for_problem_set
+
+def _provide_integers(random_seed, integers_needed):
+    random_bank = random_list_of_integers()
+    if random_seed >= len(random_bank) - integers_needed:
+        random_seed = 0
+    integers = (random_bank[random_seed+i] for i in range(integers_needed))
+
+    return integers
+
+
+    #need several different types of problems:
+    #       mult, div, add, sub, algebra,
+
+    # def _provide_random_integers(amount_needed, random_seed):
+    #     random_bank = create_cached_random_bank()
+    #     list_of_integers = []
+    #     for i in range(amount_needed):
+    #         list_of_integers.append(random_bank[random_seed])
+    #         random_seed += 1
+    #     return list_of_integers

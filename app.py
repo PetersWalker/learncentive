@@ -18,7 +18,9 @@ cache.init_app(app, config={'CACHE_TYPE':'simple'})
 
 #API
 api = Api(app)
-api.add_resource(ProblemSet, '/api/problem_set/<int:amount_of_probs>')
+api.add_resource(ProblemSet,
+                 '/api/problem_set/<int:amount_of_probs>/<string:type_of_prob>'
+                 )
 
 #VANILLA ROUTES
 @app.route('/')
