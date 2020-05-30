@@ -17,8 +17,8 @@ class ProblemSet(Resource):
         seed = randint(0, 1001)
 
         for i in range(amount_of_probs):
-            problem, next_seed = _try_generating_problem_with_random_seed(type_of_prob, seed)
-            seed = next_seed
+            problem = _try_generating_problem_with_random_seed(type_of_prob, seed)
+            seed = problem.next_index
 
             problem_dict[i] = {
                 'question': problem.string,
@@ -29,12 +29,12 @@ class ProblemSet(Resource):
 
 def _try_generating_problem_with_random_seed(type_of_prob, seed):
     try:
-        problem, next_index = Problem.generate(type_of_prob, seed)
+        problem = Problem.generate(type_of_prob, seed)
     except IndexError:
         seed = 0
-        problem, next_index = Problem.generate(type_of_prob, seed)
+        problem = Problem.generate(type_of_prob, seed)
 
-    return problem, next_index
+    return problem
 
 
         # def _provide_random_integers(amount_needed, random_seed):

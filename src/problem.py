@@ -29,39 +29,34 @@ class MultiplicationProblem(Problem):
 
     @classmethod
     def randomly_generate(cls, random_seed, integers_needed=2):
-        int_1, int_2 = _get_integers_from_cache(random_seed, integers_needed)
-        operator = '*'
-        _format_problem(cls,operator, int_1, int_2)
-        next_index_for_problem_set = random_seed + integers_needed
+        _format_problem(cls, random_seed, operator='*', integers_needed=2,)
 
-        return cls, next_index_for_problem_set
+
+        return cls
 
 class AdditionProblem(Problem):
 
     @classmethod
     def randomly_generate(cls, random_seed, integers_needed=2):
-        operator = '+'
-        int_1, int_2 = _get_integers_from_cache(random_seed, integers_needed)
-        _format_problem(cls, operator, int_1, int_2)
-        next_index_for_problem_set = random_seed + integers_needed
+        _format_problem(cls, random_seed, operator='+', integers_needed=2,)
 
-        return cls, next_index_for_problem_set
+
+        return cls
 
 class SubtractionProblem(Problem):
 
     @classmethod
-    def randomly_generate(cls, random_seed, integers_needed=2):
-        operator = '-'
-        int_1, int_2 = _get_integers_from_cache(random_seed, integers_needed)
-        _format_problem(cls, operator, int_1, int_2)
-        next_index_for_problem_set = random_seed + integers_needed
+    def randomly_generate(cls, random_seed):
+        _format_problem(cls, random_seed, operator='-', integers_needed=2,)
 
-        return cls, next_index_for_problem_set
+        return cls
 
 
-def _format_problem(cls, operator, int_1, int_2):
+def _format_problem(cls, random_seed, operator, integers_needed, ):
+    int_1, int_2 = _get_integers_from_cache(random_seed, integers_needed)
     cls.string = '{}{}{}'.format(int_1, operator, int_2)
     cls.answer = eval(cls.string)
+    cls.next_index = random_seed + integers_needed
 
 
 def _get_integers_from_cache(random_seed, integers_needed):
