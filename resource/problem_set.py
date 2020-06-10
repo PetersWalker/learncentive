@@ -3,7 +3,7 @@ from random import randint
 from flask.json import jsonify
 from flask_restful import Resource
 
-from learncentive.src.problem import Problem
+from learncentive.src.problem import ProblemGenerator
 
 class ProblemSet(Resource):
 
@@ -29,10 +29,10 @@ class ProblemSet(Resource):
 
 def _try_generating_problem_with_random_seed(type_of_prob, seed):
     try:
-        problem = Problem.generate(type_of_prob, seed)
+        problem = ProblemGenerator.generate(type_of_prob, seed)
     except IndexError:
         seed = 0
-        problem = Problem.generate(type_of_prob, seed)
+        problem = ProblemGenerator.generate(type_of_prob, seed)
 
     return problem
 

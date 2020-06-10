@@ -1,14 +1,7 @@
 from random import randint
 from learncentive.src.cache import random_list_of_integers
 
-class Problem():
-
-    def __init__(self, string='', answer=0):
-        self.string = string
-        self.answer = answer
-
-    def __repr__(self):
-        return self.string
+class ProblemGenerator():
 
     @staticmethod
     def generate(type_of_prob, random_seed=randint(0,1000)):
@@ -24,6 +17,16 @@ class Problem():
             'division': DivisionProblem
             }
         return problem_catalog[type_of_prob].randomly_generate(random_seed)
+
+
+class Problem():
+
+    def __init__(self, string='', answer=0):
+        self.string = string
+        self.answer = answer
+
+    def __repr__(self):
+        return self.string
 
 
 class MultiplicationProblem(Problem):
