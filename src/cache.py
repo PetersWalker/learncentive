@@ -9,14 +9,7 @@ from flask_caching import Cache
 
 cache = Cache()
 
-
 @cache.cached(key_prefix='random_bank', timeout=3600)
 def random_list_of_integers():
     random_bank = [randint(1, 10) for x in range(1000)]
     return random_bank
-
-
-
-
-    # def set_new_index(self, new_index):
-    #     self.current_index = new_index

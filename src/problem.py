@@ -1,84 +1,68 @@
 from random import randint
 from learncentive.src.cache import random_list_of_integers
+from learncentive.src.cache_config import cache_index
 
-class ProblemGenerator():
+# TODO
+# remove random seed from this level of abstraction
 
-    @staticmethod
-    def generate(type_of_prob, random_seed=randint(0,1000)):
-        if type_of_prob is None:
-            raise "learncentive: No Problem Type Specified"
-        if random_seed is None:
-            raise "no random_seed given"
+def generate(type_of_prob):
+    if type_of_prob is None:
+        raise "learncentive: No Problem Type Specified"
 
-        problem_catalog = {
-            'multiplication': MultiplicationProblem,
-            'addition': AdditionProblem,
-            'subtraction': SubtractionProblem,
-            'division': DivisionProblem
-            }
-        return problem_catalog[type_of_prob].randomly_generate(random_seed)
+    problem = problem_catalog[type_of_prob]()
 
+    return problem
 
 class Problem():
 
-    def __init__(self, string='', answer=0):
-        self.string = string
-        self.answer = answer
-
-    def __repr__(self):
-        return self.string
+    def __init__(self):
+        val_1, val_2 = _get_integers_from_cache(self.vals_needed)
+        self.string = self.string_pattern.format(val_1, self.operator, val_2)
+        self.answer = eval(self.string)
 
 
-class MultiplicationProblem(Problem):
-
-    @classmethod
-    def randomly_generate(cls, random_seed):
-        _format_problem(cls, random_seed, operator='*', integers_needed=2)
-
-
-        return cls
-
-class AdditionProblem(Problem):
-
-    @classmethod
-    def randomly_generate(cls, random_seed):
-        _format_problem(cls, random_seed, operator='+', integers_needed=2)
-
-
-        return cls
-
-class SubtractionProblem(Problem):
-
-    @classmethod
-    def randomly_generate(cls, random_seed):
-        _format_problem(cls, random_seed, operator='-', integers_needed=2)
-
-        return cls
-
-class DivisionProblem(Problem):
-
-    @classmethod
-    def randomly_generate(cls, random_seed):
-        _format_problem(cls, random_seed, operator='/', integers_needed=2)
-        cls.answer = round(cls.answer, 3)
-        return cls
-
-
-def _format_problem(cls, random_seed, operator, integers_needed):
-    int_1, int_2 = _get_integers_from_cache(random_seed, integers_needed)
-    cls.string = '{}{}{}'.format(int_1, operator, int_2)
-    cls.answer = eval(cls.string)
-    cls.next_index = random_seed + integers_needed
-
-
-def _get_integers_from_cache(random_seed, integers_needed):
+def _get_integers_from_cache(values_needed):
     random_bank = random_list_of_integers()
+    integers = []
 
-    if random_seed >= len(random_bank) - integers_needed:
-        random_seed = 0
-    integers = (random_bank[random_seed+i] for i in range(integers_needed))
+    for i in range(values_needed):
+        try:
+            integers.append(random_bank[cache_index.current_value+i])
+        except IndexError:
+            cache_index.reset()
+            integers.append(random_bank[cache_index.current_value+i])
+
+    cache_index.set_to(cache_index.current_value + values_needed)
 
     return integers
 
-    #need several different types of problems:
-    #       mult, div, add, sub, algebra,
+class MultiplicationProblem(Problem):
+    operator = '*'
+    vals_needed = 2
+    string_pattern = '{}{}{}'
+
+
+class AdditionProblem(Problem):
+    operator = '+'
+    vals_needed = 2
+    string_pattern = '{}{}{}'
+
+
+class SubtractionProblem(Problem):
+    operator = '-'
+    vals_needed = 2
+    string_pattern = '{}{}{}'
+
+
+class DivisionProblem(Problem):
+    operator = '/'
+    vals_needed = 2
+    string_pattern = '{}{}{}'
+
+
+problem_catalog = {
+    'multiplication': MultiplicationProblem,
+    'addition': AdditionProblem,
+    'subtraction': SubtractionProblem,
+    'division': DivisionProblem
+    }
