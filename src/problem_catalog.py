@@ -1,7 +1,3 @@
-class ProblemSetModel():
-
-    pass
-
 
 """
 Arithmetic:
@@ -65,7 +61,7 @@ Arithmetic:
 
     numerical example:
         1. A problem set is returned with the following:
-            [   (addition, diffi culty 1, correct),
+            [   (addition, difficulty 1, correct),
                 (subtraction, difficulty 3, correct),
                 (division, difficulty 3, wrong),
                 (addition, difficulty 2, correct),

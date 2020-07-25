@@ -61,7 +61,8 @@ class DivisionProblem(Problem):
     string_pattern = '{}{}{}'
 
 class CompositeProblem(Problem):
-
+# not appropriate as separate class, needs to be a subset of generate funtion or
+# class "Problem"'s init method
     def __init__(self, *type_of_prob):
         vals_needed = 0
         operators = []
@@ -72,9 +73,9 @@ class CompositeProblem(Problem):
             vals_needed += (temp_prob.vals_needed)
             operators.append(temp_prob.operator)
 
-        ints = _get_integers_from_cache(vals_needed)
-
+        ints = _get_integers_from_cache(vals_needed-len(operators)+1)
         string = zip_longest(ints, operators, fillvalue='')
+
         for tup in string:
             self.string += tup[0] + tup[1]
 
@@ -97,14 +98,14 @@ class CompositeProblem(Problem):
 # string = '1*2/4+8'
 
 # now
-# operators = [*, ln]
-# vals_needed = 2
-# string_pattern '{}{}{}{}{}{}{}{}{}'
+# operators = [*, ln, /, +]
+# vals_needed = 7
 
 # needed
-# operators = [*, ln]
-# vals_needed = 2
-# string_pattern '{}{}{}{}{}{}{}{}{}'
+# operators = [*, ln, /, +]
+# vals_needed = 4
+
+#vals needed is sum of vals needed - len(operators) +1
 
 problem_catalog = {
     'multiplication': MultiplicationProblem,
