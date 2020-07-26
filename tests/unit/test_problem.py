@@ -3,7 +3,7 @@ from random import randint
 import re
 
 from learncentive.tests.test_client import client
-from learncentive.src.problem import generate, Problem, _get_integers_from_cache
+from learncentive.problem_generation.problem import generate, Problem, _get_integers_from_cache
 
 # DELETE import and first test when second test is successful
 from learncentive.resource.problem_set import generate_problem_handle_index

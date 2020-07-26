@@ -3,8 +3,8 @@ from random import randint
 from flask.json import jsonify
 from flask_restful import Resource
 
-from learncentive.src.problem import generate, problem_catalog
-from learncentive.src.cache_config import cache_index
+from learncentive.problem_generation.problem import generate, problem_catalog
+from learncentive.problem_generation.cache_config import cache_index
 
 
 class ProblemSet(Resource):

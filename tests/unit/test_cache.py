@@ -1,4 +1,4 @@
-from learncentive.src.cache import random_list_of_integers
+from learncentive.problem_generation.cache import random_list_of_integers
 from learncentive.tests.test_client import client
 
 random_bank = random_list_of_integers()
