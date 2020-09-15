@@ -4,7 +4,7 @@ and vanilla routes'''
 from flask import Flask
 from flask_restful import Api
 from flask_cors import CORS
-from learncentive.resource.problem_set import ProblemSet
+from learncentive.api.problem_generator import ProblemSet
 from learncentive.problem_generation.cache import cache
 
 #FLASK APP
@@ -19,7 +19,7 @@ cache.init_app(app, config={'CACHE_TYPE':'simple'})
 #API
 api = Api(app)
 api.add_resource(ProblemSet,
-                 '/api/problem_set/<int:amount_of_probs>/<string:type_of_prob>'
+                 '/api/problem_generator/<int:amount_of_probs>/<int:type_of_prob>'
                  )
 
 #VANILLA ROUTES

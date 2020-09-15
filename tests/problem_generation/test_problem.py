@@ -6,11 +6,11 @@ from learncentive.tests.test_client import client
 from learncentive.problem_generation.problem import generate, Problem, _get_integers_from_cache
 
 # DELETE import and first test when second test is successful
-from learncentive.resource.problem_set import generate_problem_handle_index
+from learncentive.api.problem_generator import generate_problem_handle_index
 
 
 def test_cache_index_not_out_of_range_with_seed():
-    prob = generate_problem_handle_index('multiplication')
+    prob = generate_problem_handle_index(2)
     assert prob
 
 def test_get_integers_from_cache():
@@ -19,24 +19,24 @@ def test_get_integers_from_cache():
 
 
 def test_randomly_generate_multiplication_problem(client):
-    test_problem = generate('multiplication')
+    test_problem = generate(0)
     assert eval(test_problem.string) == int(test_problem.answer)
 
 
 def test_randomly_generate_addition_problem(client):
-    test_problem = generate('addition')
+    test_problem = generate(1)
     assert eval(test_problem.string) == int(test_problem.answer)
 
 
 def test_randomly_generate_subtraction_problem(client):
-    test_problem = generate('subtraction')
+    test_problem = generate(2)
     assert eval(test_problem.string) == int(test_problem.answer)
 
 
 def test_randomly_generate_division_problem(client):
     # Due to floating point arithmetic, it's sufficient to check answer
     # within a hundreth
-    test_problem = generate('division')
+    test_problem = generate(3)
     exact_answer = eval(test_problem.string)
     assert (exact_answer - .01) < test_problem.answer < (exact_answer + .01)
     # correct_format = re.match('\d\/\d', test_problem.string)
@@ -44,7 +44,7 @@ def test_randomly_generate_division_problem(client):
 
 
 def test_randomly_generate_composite_mult_add_problem(client):
-    test_problem = generate('multiplication', 'addition')
+    test_problem = generate(2, 0)
     assert eval(test_problem.string) == int(test_problem.answer)
     # correct_format = re.match('\d\*\d\+\d', test_problem.string)
     # assert correct_format,'{} was the wrong format'.format(test_problem.string)

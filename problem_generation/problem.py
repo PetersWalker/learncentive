@@ -4,18 +4,18 @@ from itertools import zip_longest
 from learncentive.problem_generation.cache import random_list_of_integers
 from learncentive.problem_generation.cache_config import cache_index
 
-
-
 # TODO
 # remove random seed from this level of abstraction
 
 def generate(*type_of_prob):
     if type_of_prob is None:
         raise "learncentive: No Problem Type Specified"
-    if len(type_of_prob) == 1:
-        problem = problem_catalog[type_of_prob[0]]()
-    else:
-        problem = problem_catalog['composite'](*type_of_prob)
+    elif len(type_of_prob) == 1:
+        only_type, = type_of_prob
+        problem = problem_catalog[only_type]()
+    else: #compositeproblem
+        problem = CompositeProblem(*type_of_prob)
+
     return problem
 
 class Problem():
@@ -108,9 +108,8 @@ class CompositeProblem(Problem):
 #vals needed is sum of vals needed - len(operators) +1
 
 problem_catalog = {
-    'multiplication': MultiplicationProblem,
-    'addition': AdditionProblem,
-    'subtraction': SubtractionProblem,
-    'division': DivisionProblem,
-    'composite': CompositeProblem
+    0: AdditionProblem,
+    1: SubtractionProblem,
+    2: MultiplicationProblem,
+    3: DivisionProblem,
     }

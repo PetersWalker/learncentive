@@ -1,6 +1,40 @@
+import math
 
-"""
-Arithmetic:
+class DifficultyModel():
+    """The difficulty model handles the rules for generating new problem sets.
+    When generating a new ProblemSet, a request will be made to an instance of the
+    Difficulty Model Class which will dictate the quantity of problems and
+    difficulty of those problems.
+    """
+    problem_set_size = 10
+    hard_problem_ratio = .2
+    threshold = .93
+
+    def __init__(self, grades):
+        self.hard_problems = math.ceil(self.hard_problem_ratio * self.problem_set_size)
+        self.easy_problems = self. problem_set_size - self.hard_problems
+
+        difficulty_list = grades.keys()
+
+        for difficulty in difficulty_list:
+            self.current_difficulty = difficulty
+            if grades[difficulty] < self.threshold:
+                break
+
+    def generate(self):
+        new_model = {}
+        new_model[self.current_difficulty] = self.easy_problems
+        new_model[self.current_difficulty+1] = self.hard_problems
+
+        return new_model
+
+
+# problem_difficulty = {
+# 0: , # sums < 10
+# 1:, # subtraction < 10
+# 2:, # sums > 10 < 20
+# }
+"""Arithmetic:
 
     Level 0
         addition with numbers < 5
@@ -74,6 +108,6 @@ Arithmetic:
 
 
 
-
-
+guiding principles:
+    always give a problem beyond the current problem difficulty level
 """

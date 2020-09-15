@@ -3,10 +3,15 @@ from random import randint
 from flask.json import jsonify
 from flask_restful import Resource
 
-from learncentive.problem_generation.problem import generate, problem_catalog
+from learncentive.problem_generation.problem import generate
 from learncentive.problem_generation.cache_config import cache_index
 
+# this whole module will change based on new way of generating problems
+# 1. initial get(user history/skill level in database)
+# 2. each subsequet get:
+#       get(results from previous problem set fed to the grading system)
 
+#  need to make a universal problemset object
 class ProblemSet(Resource):
 
     def get(self, amount_of_probs, type_of_prob):
