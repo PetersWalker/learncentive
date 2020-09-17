@@ -21,7 +21,7 @@ class DifficultyModel():
             if grades[difficulty] < self.threshold:
                 break
 
-    def generate(self):
+    def generate_problem_quantity(self):
         new_model = {}
         new_model[self.current_difficulty] = self.easy_problems
         new_model[self.current_difficulty+1] = self.hard_problems
@@ -64,7 +64,7 @@ class DifficultyModel():
     the likelyhood they will answer future problems at.
 
     EXAMPLE RULE 1: Problems can be provided so that the rate of correct answers
-    will be <90%. Once the correct answer rate hits 90% the next
+    will be <93%. Once the correct answer rate hits 93% the next
     problem category is provided.
 
     numerical example:

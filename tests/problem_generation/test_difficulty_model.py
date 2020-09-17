@@ -17,4 +17,6 @@ def test_difficulty_model_finds_current_difficulty(client):
 
 def test_difficulty_model_specifies_new_problem_difficulties(client):
     model = DifficultyModel({0:.93, 1:.75, 2:.50})
-    assert model.generate() == {1:8, 2:2}
+    assert model.generate_problem_quantity() == {1:8, 2:2}
+
+# def test_difficulty_model_grades_are_ints(client):

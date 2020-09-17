@@ -4,8 +4,6 @@ from itertools import zip_longest
 from learncentive.problem_generation.cache import random_list_of_integers
 from learncentive.problem_generation.cache_config import cache_index
 
-# TODO
-# remove random seed from this level of abstraction
 
 def generate(*type_of_prob):
     if type_of_prob is None:
@@ -22,8 +20,11 @@ class Problem():
 
     def __init__(self):
         val_1, val_2 = _get_integers_from_cache(self.vals_needed)
-        self.string = self.string_pattern.format(val_1, self.operator, val_2)
-        self.answer = eval(self.string)
+        self.question = self.string_pattern.format(val_1, self.operator, val_2)
+        self.answer = eval(self.question)
+
+    def __repr__(self):
+        return self.question
 
 def _get_integers_from_cache(values_needed):
     random_bank = random_list_of_integers()
@@ -66,7 +67,7 @@ class CompositeProblem(Problem):
     def __init__(self, *type_of_prob):
         vals_needed = 0
         operators = []
-        self.string = ''
+        self.question = ''
 
         for prob in type_of_prob:
             temp_prob = problem_catalog[prob]
@@ -77,9 +78,9 @@ class CompositeProblem(Problem):
         string = zip_longest(ints, operators, fillvalue='')
 
         for tup in string:
-            self.string += tup[0] + tup[1]
+            self.question += tup[0] + tup[1]
 
-        self.answer = eval(self.string)
+        self.answer = eval(self.question)
 
 # #mul div add
 # operator = '*'
