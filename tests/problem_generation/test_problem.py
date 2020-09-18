@@ -6,7 +6,7 @@ from learncentive.tests.test_client import client
 from learncentive.problem_generation.problem import generate, Problem, _get_integers_from_cache
 
 # DELETE import and first test when second test is successful
-from learncentive.api.problem_generator import generate_problem_handle_index
+from learncentive.api.problem_set_generator import generate_problem_handle_index
 
 
 def test_cache_index_not_out_of_range_with_seed():
