@@ -3,7 +3,6 @@ and vanilla routes'''
 
 from flask import Flask
 from flask_restful import Api
-from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 
 from learncentive.api.problem_set_generator import ProblemSetALaCarte, ProblemSetGenerator
@@ -11,7 +10,6 @@ from learncentive.problem_generation.cache import cache
 from learncentive.config import DevelopmentConfig
 #FLASK APP
 app = Flask('app')
-CORS(app)
 app.config.from_object(DevelopmentConfig)
 #Initialize database
 db = SQLAlchemy(app)
