@@ -13,3 +13,14 @@ cache = Cache()
 def random_list_of_integers():
     random_bank = [randint(1, 10) for x in range(1000)]
     return random_bank
+
+class CacheIndex():
+
+    def __init__(self):
+        self.current_value = randint(0,1001)
+
+    def set_to(self, new_index):
+        self.current_value = new_index
+
+    def reset(self):
+        self.set_to(randint(0,1001))

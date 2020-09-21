@@ -2,8 +2,9 @@ from random import randint
 from itertools import zip_longest
 
 from learncentive.problem_generation.cache import random_list_of_integers
-from learncentive.problem_generation.cache_config import cache_index
+from learncentive.problem_generation import config
 
+index = config.cache_index
 
 def generate(*type_of_prob):
     if type_of_prob is None:
@@ -26,15 +27,13 @@ class Problem():
     def __repr__(self):
         return self.question
 
-def _get_integers_from_cache(values_needed):
+def _get_integers_from_cache(values_needed, cache_index=index):
     random_bank = random_list_of_integers()
-    integers = []
-    for i in range(values_needed):
-        try:
-            integers.append(str(random_bank[cache_index.current_value+i]))
-        except IndexError:
-            cache_index.reset()
-            integers.append(str(random_bank[cache_index.current_value+i]))
+    integers = [
+        str(random_bank[(cache_index.current_value + i) % len(random_bank)]) 
+        for i in range(values_needed)
+        ]
+
     cache_index.set_to(cache_index.current_value + values_needed)
     return integers
 

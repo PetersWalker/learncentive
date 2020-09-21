@@ -26,12 +26,12 @@ class ProblemContainer extends React.Component {
   }
 
   getProblemSet() {
-    fetch("http://localhost:5000/api/problem_set/5")
+    fetch("http://localhost:5000/api/problem_set_generator/10/0")
       .then(response => response.json())
       .then((data) => {this.setState({
         problem_set: data,
-        question: data[this.counter]['question'],
-        correct_answer: data[this.counter]['answer']
+        question: data['problem'][this.counter]['question'],
+        correct_answer: data['problem'][this.counter]['answer']
       })})
       .catch(error => {
         console.log(error);
@@ -48,9 +48,9 @@ class ProblemContainer extends React.Component {
     console.log('counter:', this.state.counter);
 
 
-    if (submitted_answer == this.state.correct_answer){
+    if (submitted_answer === this.state.correct_answer){
       alert('YOU ARE CORRECT')
-    } else if (submitted_answer != this.state.correct_answer){
+    } else if (submitted_answer !== this.state.correct_answer){
       alert('WRONG')
     } else console.log('dammit');
     this.setCounterAndAnswer()
@@ -58,7 +58,7 @@ class ProblemContainer extends React.Component {
 
   setCounterAndAnswer(counter) {
     if (this.state.problem_set) {
-      if (this.counter == 4) {
+      if (this.counter === 4) {
         this.getProblemSet()
       } else {
         this.counter = this.counter + 1;

@@ -2,8 +2,6 @@ from random import randint
 import json
 from flask_restful import Resource
 
-from learncentive.problem_generation.problem import generate
-from learncentive.problem_generation.cache_config import cache_index
 from learncentive.problem_generation.problem_set import ProblemSet
 
 # this whole module will change based on new way of generating problems
@@ -11,8 +9,21 @@ from learncentive.problem_generation.problem_set import ProblemSet
 # 2. each subsequet get:
 #       get(grade)
 
-#  need to make a universal problemset object
 class ProblemSetGenerator(Resource):
+
+    """ API response is of the form:
+
+       {'quantity':{0:2, 1:1},
+        'correct': {0:1, 1:0},
+        'grades': {0:.92, 1:.5},
+        'graded': False,
+        'problems': [
+            {'question': '', 'answer':'', 'difficulty': 0, 'result':True},
+            {'question': '', 'answer':'', 'difficulty': 0, 'result':False},
+            {'question': '', 'answer':'', 'difficulty': 1, 'result':False}
+            ],
+        }
+    """
 
     def get(self, problem_set):
         old_problem_set = ProblemSet.from_json(problem_set)
@@ -22,34 +33,10 @@ class ProblemSetGenerator(Resource):
 class ProblemSetALaCarte(Resource):
 
     def get(self, amount_of_probs, type_of_prob):
-        new_problem_set = create_problem_set(amount_of_probs, type_of_prob)
-        response = construct_json_response(new_problem_set)
-
-        return response
+        new_problem_set = ProblemSet.alacarte(amount_of_probs, type_of_prob)
+        return new_problem_set.to_json()
 
 def create_problem_set(amount_of_probs, type_of_prob):
     problem_set = [generate_problem_handle_index(type_of_prob)
                    for i in range(amount_of_probs)]
-
     return problem_set
-
-
-def construct_json_response(problem_set):
-    problem_dict = {}
-
-    for i, problem in enumerate(problem_set):
-        problem_dict[i] = {
-            'question': problem.question,
-            'answer': problem.answer}
-
-    return problem_dict
-
-
-def generate_problem_handle_index(type_of_prob):
-    try:
-        problem = generate(type_of_prob)
-    except IndexError:
-        cache_index.set_to(0)
-        problem = generate(type_of_prob)
-
-    return problem

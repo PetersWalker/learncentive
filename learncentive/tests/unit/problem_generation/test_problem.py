@@ -3,19 +3,11 @@ from random import randint
 import re
 
 from learncentive.tests.test_client import client
-from learncentive.problem_generation.problem import generate, Problem, _get_integers_from_cache
+from learncentive.problem_generation.problem import Problem, generate, _get_integers_from_cache
 
-# DELETE import and first test when second test is successful
-from learncentive.api.problem_set_generator import generate_problem_handle_index
-
-
-def test_cache_index_not_out_of_range_with_seed():
-    prob = generate_problem_handle_index(2)
-    assert prob
-
-def test_get_integers_from_cache():
-    values = _get_integers_from_cache(2)
-    assert len(values) == 2
+def test_get_integers_from_cache_and_not_out_of_range():
+    values = _get_integers_from_cache(2000)
+    assert len(values) == 2000
 
 
 def test_randomly_generate_multiplication_problem(client):

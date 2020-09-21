@@ -2,25 +2,23 @@ import re
 import json
 
 from learncentive.tests.test_client import client
+from learncentive.problem_generation.problem_set import ProblemSet
 
 def test_homepage_load(client):
     response = client.get('/')
     assert b'learncentive' in response.data
 
-def test_problem_set_alacarte_returns_5_problems_in_json_format(client):
+def test_problem_set_alacarte_returns_problems_in_json_format(client):
     api_response_json = client.get('/api/problem_set_generator/5/2')
     assert api_response_json.is_json
 
-    api_response_dict = api_response_json.get_json()
-    assert len(api_response_dict) == 5
 
-def test_problem_set_alacarte_size_response_up_to_1000(client):
-    # available random bank is only 1000 integers
-    maximum = 1000
+def test_problem_set_alacarte_size_response_up_to_2000(client):
+    max_tested = 2000
     api_response_json = client.get(
-        '/api/problem_set_generator/{}/3'.format(maximum))
-    api_response_dict = api_response_json.get_json()
-    assert  len(api_response_dict) == maximum
+        '/api/problem_set_generator/{}/3'.format(max_tested))
+    problem_list = ProblemSet.from_json(api_response_json.get_json())
+    assert  len(problem_list.problems) == max_tested
 
 def test_problem_set_generator_returns_200_status(client):
     user_results = {'quantity':{0:2, 1:1},

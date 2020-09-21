@@ -6,29 +6,20 @@ from learncentive.problem_generation.problem import generate as generate_problem
 
 class ProblemSet():
     """ The ProblemSet class generates Problem Content to be
-    exposed to the Frontend API. it does this in one of two ways:
+    exposed to the Frontend API. it does this in one of three ways:
             1. It grades a returning ProblemSet (results) from the user to
             to construct a new problem set.the appropriate new problem set
             is dictated by the DifficultyModel.
-            2. It looks at (grades) from the database???
+            2. It looks at {grades}
+            3. It generates problems alacarte, that is choosing a monodifficulty
+            set of s certain difficulty
             """
-
-    def __init__(self, *results, grades=None):
-
-        if len(results) > 0:
-            results, = results
-            self.quantity = results['quantity']
-            self.correct = results['correct']
-            self.grades = results['grades']
-            self.graded = False
-            self.problems = results['problems']
-
-        elif grades is not None:
-            self.quantity = DifficultyModel(grades).generate_problem_quantity()
-            self.correct = {i:0 for i in self.quantity.keys()}
-            self.grades = grades
-            self.graded = False
-            self.problems = self._generate_problems(self.quantity)
+    def __init__(self, results):
+        self.quantity = results['quantity']
+        self.correct = results['correct']
+        self.grades = results['grades']
+        self.graded = False
+        self.problems = results['problems']
 
         self.__dict__ = {'quantity':self.quantity,
                          'correct': self.correct,
@@ -36,55 +27,87 @@ class ProblemSet():
                          'graded': self.graded,
                          'problems': self.problems
                          }
-    def grade(self):
+
+    @classmethod
+    def from_grades(cls, grades):
+        """Use case: the first problemset in a user session may need to fetch
+        grades from the database
+        """
+        new_model = DifficultyModel(grades)
+        quantity = new_model.generate_problem_quantity()
+        new_set = {
+            'quantity': quantity,
+            'grades': grades,
+        }
+
+        new_set['correct'] = {k: 0 for k in new_set['quantity']}
+        new_set['problems'] = cls._generate_problems(new_set['quantity'])
+
+        problem_set = cls(new_set)
+        return problem_set
+
+    @classmethod
+    def from_json(cls, json_data):
+        pydata = json.loads(json_data)
+        quantity = {int(k):v for k, v in pydata['quantity'].items()}
+        correct = {int(k):v for k, v in pydata['correct'].items()}
+        grades = {int(k):v for k, v in pydata['grades'].items()}
+        fixed_problem_set = {
+            'quantity': quantity,
+            'correct': correct,
+            'grades': grades,
+            'graded': pydata['graded'],
+            'problems': pydata['problems']
+        }
+        return cls(fixed_problem_set)
+
+    @classmethod
+    def alacarte(cls, amount_of_probs=10, type_of_prob=0):
+        quantity = {type_of_prob: amount_of_probs}
+        new_set = {
+            'quantity': quantity,
+            'grades': {type_of_prob:0},
+        }
+
+        new_set['correct'] = {k: 0 for k in quantity}
+        new_set['problems'] = cls._generate_problems(quantity)
+
+        problem_set = cls(new_set)
+
+        return problem_set
+
+    def new_problem_set(self):
+        if self.graded is False:
+            self._grade_set()
+        return self.from_grades(self.grades)
+
+    def _grade_set(self):
         """"The formula used to calculate self.grades is the entire
         grading system. It's simply the average of previous grades
         and the most recent correct answer count
         """
-        difficulties = self.quantity.keys()
-        for i in difficulties:
-            self.grades[i] = (((self.correct[i]/self.quantity[i]) + self.grades[i]) /2)
+
+        for k in self.quantity:
+            self.grades[k] = (((self.correct[k]/self.quantity[k]) + self.grades[k]) /2)
         self.graded = True
 
-    def new_problem_set(self):
-        if self.graded == False:
-            self.grade()
-
-        return ProblemSet(grades=self.grades)
-
-    def _generate_problems(self, quantity):
+    @staticmethod
+    def _generate_problems(quantity):
         problems = []
-        for difficulty in quantity.keys():
-            while quantity[difficulty] > 0:
-                problem = generate_problem(difficulty)
+        for k, v in quantity.items():
+#                {0:8, 1:2}
+            while v > 0:
+                problem = generate_problem(k)
                 new_problem_info = {
                     'question':problem.question,
                     'answer':problem.answer,
-                    'difficulty': difficulty,
+                    'difficulty': k,
                     'result': False
                      }
                 problems.append(new_problem_info)
-                quantity[difficulty] -= 1
+                v -= 1
 
         return problems
 
     def to_json(self):
         return json.dumps(vars(self))
-
-    @classmethod
-    def from_json(cls, json_data):
-        
-        def _patch_json_string_index_to_int(problem_set):
-            problem_set.quantity = {int(k):v for k,v in problem_set.quantity.items()}
-            problem_set.correct = {int(k):v for k,v in problem_set.correct.items()}
-            problem_set.grades = {int(k):v for k,v in problem_set.grades.items()}
-
-        data = json.loads(json_data)
-
-        try:
-            problem_set = ProblemSet(data)
-            _patch_json_string_index_to_int(problem_set)
-            return problem_set
-
-        except KeyError:
-            print('data in {} doesn\'t match the ProblemSet spec'.format(data))
