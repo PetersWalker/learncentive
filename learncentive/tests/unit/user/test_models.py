@@ -5,6 +5,4 @@ from learncentive.user.models import User
 
 def test_retrieval_of_user_info():
     db.create_all()
-
-def test_retrieval_of_user_info():
-    assert True
+    assert db

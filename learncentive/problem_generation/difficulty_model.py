@@ -14,9 +14,8 @@ class DifficultyModel():
         self.hard_problems = math.ceil(self.hard_problem_ratio * self.problem_set_size)
         self.easy_problems = self. problem_set_size - self.hard_problems
 
-        difficulty_list = grades.keys()
 
-        for difficulty in difficulty_list:
+        for difficulty in range(len(grades)):
             self.current_difficulty = difficulty
             if grades[difficulty] < self.threshold:
                 break
