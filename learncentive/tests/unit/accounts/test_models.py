@@ -1,5 +1,5 @@
 from learncentive.app import db
-from learncentive.user.models import User
+from learncentive.accounts.models import User
 import json
 #previous frmo psycop2 only, no SQLAlchemy
 #connection = psycopg2.connect(dbname='learncentive_test_db', user='postgres', password='7011')

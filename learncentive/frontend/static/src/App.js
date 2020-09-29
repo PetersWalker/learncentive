@@ -1,10 +1,10 @@
-import React from 'react';
-import './App.css';
 import ProblemContainer from './classroom/problem_container'
+import React from 'react';
 
 function App() {
   return (
-    <div className="App">
+    <div>
+      <p>hey</p>
       <ProblemContainer key='problem_container' />
     </div>
   );
