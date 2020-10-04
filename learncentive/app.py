@@ -58,7 +58,8 @@ def about():
 #REACT frontend
 @app.route('/classroom')
 def classroom_app():
-    return render_template('classroom.html')
+    bundle = url_for('static', filename='js/react_dist/index_bundle.js')
+    return render_template('classroom.html', react_bundle=bundle)
 
 #CONFIGURATIONS, FLASK_APP & FLASK_ENV settings are in .flaskenv
 app.config.update(

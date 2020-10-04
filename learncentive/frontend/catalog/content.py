@@ -2,12 +2,12 @@ from flask import url_for
 
 catalog_content = {
     'Arithmetic': {
-        'thumbnail': 'math.jpg'
+        'thumbnail': 'img/math.jpg'
         },
     'Algebera coming soon!': {
         'thumbnail': ''
         },
     'Spanish coming soon!': {
-        'thumbnail': 'spanish.jpg'
+        'thumbnail': 'img/spanish.jpg'
         }
 }
