@@ -99,7 +99,7 @@ class ProblemSet():
                     'question':problem.question,
                     'answer':problem.answer,
                     'difficulty': k,
-                    'result': False
+                    'correct': False
                      }
                 problems.append(new_problem_info)
                 v -= 1

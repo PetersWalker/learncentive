@@ -39,7 +39,7 @@ api.add_resource(
     )
 api.add_resource(
     ProblemSetGenerator,
-    '/api/problem_set_generator/<string:problem_set>'
+    '/api/problem_set_generator/<string:json_data>'
     )
 
 #VANILLA ROUTES

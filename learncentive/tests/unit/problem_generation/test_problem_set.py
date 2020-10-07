@@ -3,17 +3,15 @@ import json
 from learncentive.problem_generation.problem_set import ProblemSet
 
 user_results = {
-                # 'quantity': {0: 2, 1: 1},
-                # 'correct': {0: 2, 1: 1},
-                'grades': [.92, .5],
-                'graded': False,
-                'problems': [
-                    {'question': '', 'answer': '', 'difficulty': 0, 'correct': True},
-                    {'question': '', 'answer': '', 'difficulty': 0, 'correct': True},
-                    {'question': '', 'answer': '', 'difficulty': 1, 'correct': True},
-                    {'question': '', 'answer': '', 'difficulty': 2, 'correct': False}
-                    ],
-                }
+    'grades': [.92, .5],
+    'graded': False,
+    'problems': [
+        {'question': '', 'answer': '', 'difficulty': 0, 'correct': True},
+        {'question': '', 'answer': '', 'difficulty': 0, 'correct': True},
+        {'question': '', 'answer': '', 'difficulty': 1, 'correct': True},
+        {'question': '', 'answer': '', 'difficulty': 2, 'correct': False}
+        ],
+    }
 '''need to run on multiple edge cases:
     grades are preserved from previous difficulties
     grades are rounded up to hundreth place'''
@@ -24,6 +22,7 @@ def test_new_problem_set_from_old_problem_set():
     assert isinstance(new_set, ProblemSet)
     assert new_set.grades == [.96, .75, 0]
     assert len(new_set.problems) == 10
+    assert isinstance(vars(new_set), dict)
 
 def test_problem_set_from_grades():
     grades = [.94, .5]

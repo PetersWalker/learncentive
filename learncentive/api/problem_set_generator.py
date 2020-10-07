@@ -6,7 +6,6 @@ from learncentive.problem_generation.problem_set import ProblemSet
 
 class ProblemSetGenerator(Resource):
     """ API response is of the form:
-
        {'grades': [.92, .5]
         'graded': False,
         'problems': [
