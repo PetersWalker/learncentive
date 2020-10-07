@@ -1,0 +1,13 @@
+.navbar{
+  color: transparent;
+  padding: 1em;
+}
+
+a.navbar-brand {
+  color: white;
+  font: 50pt
+}
+
+a.nav-link {
+  color: white
+}

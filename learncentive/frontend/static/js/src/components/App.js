@@ -1,26 +1,84 @@
 import React, {Component} from 'react';
 
-import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-
 import WorkSpace from './WorkSpace';
 import Advertisment from './Advertisment';
 
 class App extends Component {
-  render() {
-    return(
-          <div>
-          <Container/>
-            <Row>
-              <Col><WorkSpace /></Col>
-              <Col><Advertisment /></Col>
-            </Row>
-          <Container />
-          </div>
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      data: null
+    };
 
-    );
+    this.fetchNewProblemSet = this.fetchNewProblemSet.bind(this);
+    this.fetchSubsequentProblemSet = this.fetchSubsequentProblemSet.bind(this);
+  }
+  componentDidMount() {
+    this.fetchNewProblemSet()
+  };
+
+  fetchNewProblemSet() {
+    var url = "http://localhost:5000/api/problem_set_generator/5/2"
+    fetch(url, {
+      mode: "cors"
+    })
+      .then(res => res.json())
+      .then(
+          (result) => {
+          this.setState({
+            isLoaded: true,
+            data: JSON.parse(result)
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
+    };
+
+  fetchSubsequentProblemSet() {
+    this.setState({
+      error: null,
+      isLoaded: false,
+      data: null
+    });
+    this.fetchNewProblemSet()
+  };
+
+
+  render() {
+    const { error, isLoaded, data } = this.state;
+    if (error) {
+      return <div>{error.message}</div>;
+    } else if (!isLoaded) {
+      return <div>Loading</div>;
+    } else if (data) {
+      return (
+        <div className='container'>
+            <WorkSpace
+            problems={this.state.data.problems}
+            fetchSubsequentProblemSet={this.fetchSubsequentProblemSet}
+            />
+        </div>
+      );
+    }
   }
 }
 
 export default App;
+
+// API response is of the form:
+//
+//    {'grades': [.92, .5]
+//     'graded': False,
+//     'problems': [
+//         {'question': '', 'answer':'', 'difficulty': 0, 'result':True},
+//         {'question': '', 'answer':'', 'difficulty': 0, 'result':False},
+//         {'question': '', 'answer':'', 'difficulty': 1, 'result':False}
+//         ],
+//     }

@@ -1,7 +1,11 @@
 {% extends './base/base.html' %}
 
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/classroom.css') }}"/>
+{% endblock %}
+
 {% block content%}
-    <div id="app">
+    <div id="app" class="app">
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
