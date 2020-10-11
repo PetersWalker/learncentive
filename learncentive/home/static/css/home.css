@@ -1,0 +1,30 @@
+.bg-growth {
+    background-position: right;
+    background: url("../images/stairs2.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg-dark {
+    background-color: #BCC7CA !important;
+}
+
+.btn-secondary {
+    background-color: #05003B;
+    border-color: white;
+    color: white;
+   }
+
+ .registration-form {
+  padding: 1rem;
+  background-color: white;
+  margin-top: 3rem
+  }
+
+ .tab-content {
+    display: none
+ }
+
+ .navbar-dark {
+    font-size: 2rem
+ }

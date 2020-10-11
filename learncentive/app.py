@@ -1,68 +1,30 @@
-'''This module contains the instance of the Flask App, Cache, API endpoints
-and vanilla routes'''
+from flask import Flask
+from learncentive.extensions import db, cors, cache
 
-from flask import Flask, render_template, url_for
-from flask_cors import CORS
-from flask_restful import Api
-from flask_sqlalchemy import SQLAlchemy
+# Import Blueprints
+from learncentive.users.routes import users
+from learncentive.problem_generation.routes import problem_generation
+from learncentive.home.routes import home
+from learncentive.classroom.routes import classroom
 
-from learncentive.api.problem_set_generator import ProblemSetALaCarte, ProblemSetGenerator
-from learncentive.problem_generation.cache import cache
-from learncentive.config import DevelopmentConfig
-from learncentive.frontend.catalog.content import catalog_content
 
-#FLASK APP
-app = Flask(
-    'app',
-    template_folder='./frontend/templates',
-    static_folder='./frontend/static'
-    )
+# FLASK APP Factory
+def create_app(config_obj):
+    app = Flask('__name__')
+    app.config.from_object(config_obj)
+    register_extensions(app)
+    register_blueprints(app)
+    return app
 
-#TODO: cross origin resource charing was necessary for react compatability,
-#evaluate if necessary in staging
-CORS(app)
 
-#CONFIGURATIONS
-app.config.from_object(DevelopmentConfig)
+def register_extensions(app):
+    db.init_app(app)
+    cors.init_app(app)
+    cache.init_app(app)
 
-#Initialize database
-db = SQLAlchemy(app)
 
-#Initialize cache object with app
-cache.init_app(app)
-
-#API
-api = Api(app)
-api.add_resource(
-    ProblemSetALaCarte,
-    '/api/problem_set_generator/<int:amount_of_probs>/<int:type_of_prob>'
-    )
-api.add_resource(
-    ProblemSetGenerator,
-    '/api/problem_set_generator/<string:json_data>'
-    )
-
-#VANILLA ROUTES
-@app.route('/')
-def home():
-    return render_template('home.html')
-
-@app.route('/catalog')
-def catalog():
-    return render_template('catalog.html', catalog_content=catalog_content)
-
-@app.route('/about')
-def about():
-    return render_template('about.html')
-
-#REACT frontend
-@app.route('/classroom')
-def classroom_app():
-    bundle = url_for('static', filename='js/react_dist/index_bundle.js')
-    return render_template('classroom.html', react_bundle=bundle)
-
-#CONFIGURATIONS, FLASK_APP & FLASK_ENV settings are in .flaskenv
-app.config.update(
-    CACHE_TYPE='simple',
-    CACHE_DEFAULT_TIMEOUT=300
-    )
+def register_blueprints(app):
+    app.register_blueprint(users)
+    app.register_blueprint(problem_generation, url_prefix='/problem_generation')
+    app.register_blueprint(home, url_prefix='')
+    app.register_blueprint(classroom)

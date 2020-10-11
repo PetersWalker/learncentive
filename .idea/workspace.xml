@@ -2,16 +2,61 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="02abbf64-ba65-40a6-98b0-ece26225266c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/frontend/src/problem_container.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/learncentive/api/problem_set_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/api/problem_set_generator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/learncentive/classroom/static/react_dist/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/learncentive/classroom/static/react_dist/index_bundle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/learncentive/home/routes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/learncentive/home/static/css/bootstrap4-growth.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/learncentive/home/static/css/bootstrap4-growth.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/learncentive/home/static/css/home.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/learncentive/home/static/login_signup.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/learncentive/home/templates/login_signup.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/learncentive/problem_generation/routes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/learncentive/tests/config/test_configurations.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/learncentive/users/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/learncentive.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/learncentive.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/.flaskenv" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/.flaskenv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/users/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/learncentive/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/learncentive/problem_generation/problem_set.py" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/problem_generation/problem_set.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/frontend/catalog/content.py" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/home/static/content.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/frontend/static/css/about.css" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/classroom/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/frontend/static/css/base.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/frontend/static/css/catalog.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/frontend/static/css/classroom.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/frontend/static/css/home.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/frontend/static/css/navbar.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/frontend/static/js/.babelrc" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/classroom/static/js/.babelrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/frontend/static/js/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/classroom/static/js/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/frontend/static/js/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/classroom/static/js/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/frontend/static/js/react_dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/classroom/static/js/react_dist/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/frontend/static/js/react_dist/index_bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/classroom/static/js/react_dist/index_bundle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/frontend/static/js/src/components/Advertisment.js" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/classroom/static/js/src/components/Advertisment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/frontend/static/js/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/classroom/static/js/src/components/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/frontend/static/js/src/components/InputForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/classroom/static/js/src/components/InputForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/frontend/static/js/src/components/ProblemDisplay.js" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/classroom/static/js/src/components/ProblemDisplay.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/frontend/static/js/src/components/ResultDisplay.js" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/classroom/static/js/src/components/ResultDisplay.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/frontend/static/js/src/components/WorkSpace.js" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/classroom/static/js/src/components/WorkSpace.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/frontend/static/js/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/classroom/static/js/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/frontend/static/js/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/classroom/static/js/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/frontend/static/js/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/classroom/static/js/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/frontend/templates/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/home/templates/about.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/frontend/templates/base/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/home/templates/base/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/frontend/templates/base/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/home/templates/base/navbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/frontend/templates/catalog.html" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/home/templates/catalog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/frontend/templates/classroom.html" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/classroom/templates/classroom.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/frontend/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/home/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/problem_generation/cache.py" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/problem_generation/cache.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/learncentive/tests/api/test_api_endpoints.py" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/tests/api/test_api_endpoints.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/learncentive/tests/problem_generation/test_cache.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/learncentive/tests/problem_generation/test_difficulty_model.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/learncentive/tests/problem_generation/test_problem.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/learncentive/tests/problem_generation/test_problem_set.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/learncentive/tests/user/test_models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/tests/test_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/tests/test_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/tests/unit/accounts/test_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/tests/unit/users/test_models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/tests/unit/problem_generation/test_cache.py" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/tests/unit/problem_generation/test_cache.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learncentive/tests/unit/problem_generation/test_problem_set.py" beforeDir="false" afterPath="$PROJECT_DIR$/learncentive/tests/unit/problem_generation/test_problem_set.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +74,30 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="full.screen.before.presentation.mode" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/learncentive/classroom/static" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings module-name="learncentive" is-module-sdk="true">
+        <option name="myUseModuleSdk" value="true" />
+        <option name="myModuleName" value="learncentive" />
+      </console-settings>
+    </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/learncentive/classroom/static" />
+      <recent name="$PROJECT_DIR$/learncentive/home" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/learncentive/home/static/css" />
+      <recent name="$PROJECT_DIR$/learncentive/classroom/static" />
+      <recent name="$PROJECT_DIR$/learncentive/home/static" />
+      <recent name="$PROJECT_DIR$/learncentive/home/static/images" />
+      <recent name="$PROJECT_DIR$/learncentive/tests/config" />
+    </key>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -55,5 +123,51 @@
       <updated>1600563283707</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="398" y="173" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602262146488">
+      <screen x="0" y="23" width="1680" height="978" />
+    </state>
+    <state x="398" y="173" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.978@0.23.1680.978" timestamp="1602262146488" />
+    <state x="514" y="394" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602274413891">
+      <screen x="0" y="23" width="1680" height="978" />
+    </state>
+    <state x="514" y="394" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1680.978@0.23.1680.978" timestamp="1602274413891" />
+    <state x="671" y="302" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1602256727713">
+      <screen x="0" y="23" width="1680" height="978" />
+    </state>
+    <state x="671" y="302" key="#com.intellij.ide.util.TreeClassChooserDialog/0.23.1680.978@0.23.1680.978" timestamp="1602256727713" />
+    <state x="451" y="348" key="FileChooserDialogImpl" timestamp="1602257873160">
+      <screen x="0" y="23" width="1680" height="978" />
+    </state>
+    <state x="451" y="348" key="FileChooserDialogImpl/0.23.1680.978@0.23.1680.978" timestamp="1602257873160" />
+    <state x="549" y="229" key="RollbackChangesDialog" timestamp="1602255627860">
+      <screen x="0" y="23" width="1680" height="978" />
+    </state>
+    <state x="549" y="229" key="RollbackChangesDialog/0.23.1680.978@0.23.1680.978" timestamp="1602255627860" />
+    <state x="408" y="104" key="SettingsEditor" timestamp="1602345264318">
+      <screen x="0" y="23" width="1680" height="978" />
+    </state>
+    <state x="408" y="104" key="SettingsEditor/0.23.1680.978@0.23.1680.978" timestamp="1602345264318" />
+    <state x="100" y="123" width="1533" height="777" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1602255651428">
+      <screen x="0" y="23" width="1680" height="978" />
+    </state>
+    <state x="100" y="123" width="1533" height="777" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1680.978@0.23.1680.978" timestamp="1602255651428" />
+    <state x="488" y="372" key="com.intellij.ide.util.TipDialog" timestamp="1602262505268">
+      <screen x="0" y="23" width="1680" height="978" />
+    </state>
+    <state x="488" y="372" key="com.intellij.ide.util.TipDialog/0.23.1680.978@0.23.1680.978" timestamp="1602262505268" />
+    <state x="474" y="23" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1602275356427">
+      <screen x="0" y="23" width="1680" height="978" />
+    </state>
+    <state x="474" y="23" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.1680.978@0.23.1680.978" timestamp="1602275356427" />
+    <state x="363" y="151" width="965" height="825" key="find.popup" timestamp="1602383483647">
+      <screen x="0" y="23" width="1680" height="978" />
+    </state>
+    <state x="363" y="151" width="965" height="825" key="find.popup/0.23.1680.978@0.23.1680.978" timestamp="1602383483647" />
+    <state x="373" y="23" width="838" height="1032" key="search.everywhere.popup" timestamp="1602272825485">
+      <screen x="0" y="23" width="1680" height="978" />
+    </state>
+    <state x="373" y="23" width="838" height="1032" key="search.everywhere.popup/0.23.1680.978@0.23.1680.978" timestamp="1602272825485" />
   </component>
 </project>

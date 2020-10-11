@@ -37,3 +37,7 @@ def test_problem_set_is_json_serializable():
     new_set = ProblemSet(user_results).new_problem_set()
     json_data = json.dumps(vars(new_set))
     assert isinstance(json_data, str)
+
+# def test_problem_set_from_data_base_grades():
+#     new_set = ProblemSet.from_grades()
+#     assert isinstance(new_set, ProblemSet)
