@@ -1,5 +1,4 @@
-from flask import Blueprint
-import json
+from flask import Blueprint, jsonify, json
 problem_generation = Blueprint('problem_generation', __name__)
 
 from learncentive.problem_generation.problem_set import ProblemSet
@@ -8,13 +7,13 @@ from learncentive.problem_generation.problem_set import ProblemSet
 @problem_generation.route('/<int:amount_of_probs>/<int:type_of_prob>', methods=['GET'])
 def problem_set_a_la_carte(amount_of_probs, type_of_prob):
     new_problem_set = ProblemSet.alacarte(amount_of_probs, type_of_prob)
-    return json.dumps(vars(new_problem_set))
+    return jsonify(vars(new_problem_set))
 
 @problem_generation.route('/<string:json_data>', methods=['GET'])
 def problemset_from_old(json_data):
     old_problem_set = ProblemSet(json.loads(json_data))
     new_problem_set = old_problem_set.new_problem_set()
-    return json.dumps(vars(new_problem_set))
+    return jsonify(vars(new_problem_set))
 
 
 """ API response is of the form:

@@ -41,8 +41,10 @@ class ProblemSet():
     @classmethod
     def alacarte(cls, amount_of_probs=10, type_of_prob=0):
         quantity = {type_of_prob: amount_of_probs}
+        grades = [ 1 for i in range(type_of_prob)]
+        grades.append(0)
         new_set = {
-            'grades': {type_of_prob:0},
+            'grades': grades,
             'graded': False,
             'problems': cls._generate_problems(quantity)
         }
