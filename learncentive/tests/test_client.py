@@ -2,6 +2,7 @@ import pytest
 
 from learncentive.app import create_app
 from learncentive.config import TestConfig
+from learncentive.extensions import db
 
 @pytest.fixture
 def client():
@@ -9,3 +10,13 @@ def client():
 
     with app.test_client() as test_client:
         yield test_client
+
+
+@pytest.fixture
+def db_context():
+    app = create_app(TestConfig)
+
+    with app.app_context():
+        db.drop_all()
+        db.create_all()
+        yield db
