@@ -1,4 +1,4 @@
-from learncentive.tests.test_client import client
+from learncentive.tests.fixtures import client
 from learncentive.problem_generation.difficulty_model import DifficultyModel
 
 def test_difficulty_model_finds_current_difficulty(client):
