@@ -24,7 +24,7 @@ def register_extensions(app):
 
 
 def register_blueprints(app):
-    app.register_blueprint(users)
+    app.register_blueprint(users, url_prefix="/users")
     app.register_blueprint(problem_generation, url_prefix='/problem_generation')
     app.register_blueprint(home, url_prefix='')
     app.register_blueprint(classroom)

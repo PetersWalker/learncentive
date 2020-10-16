@@ -9,6 +9,9 @@ def client():
     app = create_app(TestConfig)
 
     with app.test_client() as test_client:
+        with app.app_context():
+            db.drop_all()
+            db.create_all()
         yield test_client
 
 

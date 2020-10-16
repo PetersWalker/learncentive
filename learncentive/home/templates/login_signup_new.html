@@ -19,20 +19,22 @@
     <div id="signup" class="formwrapper tab-content">
       <form class="signup-form" method="POST" action="{{ url_for('users.register') }}">
           <div class="form-group">
-              <div class="form-field" placeholder="Name">{{ form.name.label }} {{ form.name(class_="form-control") }}</div>
-              <div class="form-field" placeholder="Email">{{ form.email.label }} {{ form.email(class_="form-control") }}</div>
-              <div class="form-field" placeholder="Password">{{ form.password.label }} {{ form.password(class_="form-control") }}</div>
+              <div class="form-field">{{ form.name.label }} {{ form.name(class_="form-control") }}</div>
+              <div class="form-field">{{ form.email.label }} {{ form.email(class_="form-control") }}</div>
+              <div class="form-field">{{ form.password.label }} {{ form.password(class_="form-control") }}</div>
+              <div class="form-field">{{ form.confirm.label }} {{ form.confirm(class_="form-control") }}</div>
+
               {{ form.submit(class_="btn btn-secondary btn-lg my-2 mr-2") }}
           </div>
       </form>
     </div>
 
     <div id="login" class="formwrapper tab-content">
-      <form class="signup-form" method="POST" action="{{ url_for('users.login') }}">
+      <form class="signup-form" method="POST" action="{{ url_for('users.register') }}">
           <div class="form-group">
-              <div class="form-field" placeholder="Name">{{ form.name.label }} {{ form.name(class_="form-control")}}</div>
-              <div class="form-field" placeholder="Email">{{ form.email.label }} {{ form.email(class_="form-control") }}</div>
-              <div class="form-field" placeholder="Password">{{ form.password.label }} {{ form.password(class_="form-control") }}</div>
+              <div class="form-field">{{ form.name.label }} {{ form.name(class_="form-control")}}</div>
+              <div class="form-field">{{ form.email.label }} {{ form.email(class_="form-control") }}</div>
+              <div class="form-field">{{ form.password.label }} {{ form.password(class_="form-control") }}</div>
               {{ form.submit(class_="btn btn-secondary btn-lg my-2 mr-2") }}
           </div>
       </form>
