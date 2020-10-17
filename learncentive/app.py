@@ -1,5 +1,5 @@
 from flask import Flask
-from learncentive.extensions import db, cors, cache
+from learncentive.extensions import db, cors, cache, jwt
 
 # Import Blueprints
 from learncentive.users.routes import users
@@ -21,6 +21,7 @@ def register_extensions(app):
     db.init_app(app)
     cors.init_app(app)
     cache.init_app(app)
+    jwt.init_app(app)
 
 
 def register_blueprints(app):

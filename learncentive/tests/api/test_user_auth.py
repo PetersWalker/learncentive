@@ -1,6 +1,7 @@
 from learncentive.tests.fixtures import client
 from learncentive.users.models import User
 
+
 def test_register_new_user(client):
     route = 'users/register'
     form_data = {
@@ -18,7 +19,8 @@ def test_register_new_user(client):
     assert db_user.password == 'testpass'
     assert db_user.grades == [0]
 
-def test_already_registerd(client):
+
+def test_user_already_registerd(client):
     route = 'users/register'
     form_data = {
         'name': 'pete',
@@ -32,7 +34,8 @@ def test_already_registerd(client):
     response = client.post(route, data=form_data)
     assert response.status == '409 CONFLICT'
 
-def test_invalid(client):
+
+def test_invalid_registration_form(client):
     route = 'users/register'
     form_data = {
         'name': 'peter',
@@ -42,5 +45,27 @@ def test_invalid(client):
     }
     response = client.post(route, data=form_data)
     assert response.status == '400 BAD REQUEST'
+
+
+def test_login(client):
+    register = 'users/register'
+    register_data = {
+        'name': 'pete',
+        'email': 'peter@learncentive.com',
+        'password': 'testpass',
+        'confirm': 'testpass'
+
+    }
+    client.post(register, data=register_data)
+
+    login = 'users/token/auth'
+    login_data = {
+        'email': 'peter@learncentive.com',
+        'password': 'testpass'
+    }
+    response = client.post(login, data=login_data)
+
+    assert response.status == '200 OK'
+
 
 

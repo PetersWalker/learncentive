@@ -1,8 +1,9 @@
-from sqlalchemy.dialects.postgresql import  JSON
+from sqlalchemy.dialects.postgresql import JSON, UUID
+import uuid
 from learncentive.app import db
 
 class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(UUID(as_uuid=True), default=uuid.uuid4, unique=True, primary_key=True, nullable=False)
     name = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(120), unique=False, nullable=False)
@@ -11,4 +12,4 @@ class User(db.Model):
 class Grades(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     grades = db.Column(JSON)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(UUID(as_uuid=True), db.ForeignKey('user.id'), nullable=False)
