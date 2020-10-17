@@ -21,7 +21,3 @@ def home_page():
 def catalog():
     return render_template('catalog.html', catalog_content=catalog_content)
 
-
-@home.route('/about')
-def about():
-    return render_template('about.html')

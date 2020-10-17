@@ -1,4 +1,4 @@
-{% extends './base/base.html' %}
+{% extends "base/base.html" %}
 
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('home.static', filename='css/home.css') }}" >
@@ -32,7 +32,7 @@
       </div>
 
 
-      {% include "login_signup_new.html" %}
+      {% include "base/login_signup_new.html" %}
 
     </div>
   </div>

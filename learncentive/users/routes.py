@@ -26,7 +26,9 @@ def register():
             grades=[0])
         db.session.add(user)
         db.session.commit()
-        return render_template('catalog.html'), 201
+        response = jsonify({'register': True})
+
+        return response, 201
     else:
         return 'bad request, invalid form', 400
 
