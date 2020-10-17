@@ -1,0 +1,10 @@
+.bg-dark {
+    background-color: #BCC7CA !important;
+}
+
+
+.btn-secondary {
+    background-color: #05003B;
+    border-color: white;
+    color: white;
+}
