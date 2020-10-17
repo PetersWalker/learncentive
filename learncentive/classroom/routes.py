@@ -1,4 +1,6 @@
 from flask import Blueprint, render_template, url_for
+from flask_jwt_extended import jwt_required
+
 
 classroom = Blueprint(
     'classroom',
@@ -9,6 +11,7 @@ classroom = Blueprint(
 )
 
 
+@jwt_required
 @classroom.route('/classroom')
 def classroom_app():
     bundle = url_for('classroom.static', filename='js/react_dist/index_bundle.js')
