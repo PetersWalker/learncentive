@@ -1,5 +1,5 @@
 from learncentive.tests.fixtures import client
-from learncentive.admin.routes import admin
+from learncentive.admin.configure import admin
 
 def test_admin_page(client):
     response = client.get('/admin')
