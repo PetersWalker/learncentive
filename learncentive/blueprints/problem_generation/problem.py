@@ -1,8 +1,7 @@
-from random import randint
 from itertools import zip_longest
 
-from learncentive.problem_generation.cache import random_list_of_integers
-from learncentive.problem_generation import config
+from learncentive.blueprints.problem_generation.cache import random_list_of_integers
+from learncentive.blueprints.problem_generation import config
 
 index = config.cache_index
 

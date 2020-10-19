@@ -1,4 +1,4 @@
-from flask import Blueprint, request, render_template, jsonify
+from flask import Blueprint, request, jsonify
 from flask_jwt_extended import (
     create_access_token, create_refresh_token, set_access_cookies,
     set_refresh_cookies, jwt_refresh_token_required, get_jwt_identity,
@@ -6,8 +6,8 @@ from flask_jwt_extended import (
 )
 
 from learncentive.extensions import db
-from learncentive.users.models import User
-from learncentive.users.forms.login_signup import SignupForm, LoginForm
+from learncentive.blueprints.users.models import User
+from learncentive.blueprints.users.forms.login_signup import SignupForm, LoginForm
 
 users = Blueprint('users', __name__)
 

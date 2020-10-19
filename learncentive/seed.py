@@ -2,7 +2,7 @@ import click
 from flask.cli import with_appcontext
 
 from learncentive.extensions import db
-from learncentive.problem_generation.models import ArithemticProblem
+from learncentive.blueprints.problem_generation.models import ArithemticProblem
 
 
 @click.command('seed')

@@ -1,5 +1,6 @@
-from learncentive.users.models import User
+from learncentive.blueprints.users.models import User
 from learncentive.tests.fixtures import db_context as db
+
 
 # previous from psycop2 only, no SQLAlchemy
 

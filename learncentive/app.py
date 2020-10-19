@@ -4,10 +4,10 @@ from learncentive.extensions import db, cors, cache, jwt
 from flask_admin import Admin
 
 # Import Blueprints
-from learncentive.users.routes import users
-from learncentive.problem_generation.routes import problem_generation
-from learncentive.home.routes import home
-from learncentive.classroom.routes import classroom
+from learncentive.blueprints.users.routes import users
+from learncentive.blueprints.problem_generation.routes import problem_generation
+from learncentive.blueprints.home.routes import home
+from learncentive.blueprints.classroom.routes import classroom
 from learncentive.admin.views import configure_admin_views
 
 from learncentive.seed import seed_database

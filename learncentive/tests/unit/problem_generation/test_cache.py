@@ -1,4 +1,4 @@
-from learncentive.problem_generation.cache import random_list_of_integers
+from learncentive.blueprints.problem_generation.cache import random_list_of_integers
 
 random_bank = random_list_of_integers()
 

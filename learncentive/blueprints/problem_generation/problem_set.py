@@ -1,8 +1,5 @@
-import json
-from random import shuffle
-
-from learncentive.problem_generation.difficulty_model import DifficultyModel
-from learncentive.problem_generation.problem import generate as generate_problem
+from learncentive.blueprints.problem_generation.difficulty_model import DifficultyModel
+from learncentive.blueprints.problem_generation.problem import generate as generate_problem
 
 class ProblemSet():
     """ The ProblemSet class generates Problem Content to be

@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, json
 problem_generation = Blueprint('problem_generation', __name__)
 
-from learncentive.problem_generation.problem_set import ProblemSet
+from learncentive.blueprints.problem_generation.problem_set import ProblemSet
 
 #API routes serving React app in classroom template
 @problem_generation.route('/<int:amount_of_probs>/<int:type_of_prob>', methods=['GET'])

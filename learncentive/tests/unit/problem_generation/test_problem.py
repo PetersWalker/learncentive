@@ -1,9 +1,5 @@
-import unittest
-from random import randint
-import re
-
+from learncentive.blueprints.problem_generation.problem import generate, _get_integers_from_cache
 from learncentive.tests.fixtures import client
-from learncentive.problem_generation.problem import Problem, generate, _get_integers_from_cache
 
 def test_get_integers_from_cache_and_not_out_of_range():
     values = _get_integers_from_cache(2000)

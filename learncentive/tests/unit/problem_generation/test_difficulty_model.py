@@ -1,5 +1,5 @@
+from learncentive.blueprints.problem_generation.difficulty_model import DifficultyModel
 from learncentive.tests.fixtures import client
-from learncentive.problem_generation.difficulty_model import DifficultyModel
 
 def test_difficulty_model_finds_current_difficulty(client):
     grades = {0: .9, 1: .75, 2: .50}

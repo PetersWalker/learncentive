@@ -1,8 +1,8 @@
 from flask_admin.contrib.sqla import ModelView
 
 from learncentive.extensions import db
-from learncentive.users.models import User
-from learncentive.problem_generation.models import ArithemticProblem
+from learncentive.blueprints.users.models import User
+from learncentive.blueprints.problem_generation.models import ArithemticProblem
 
 
 def configure_admin_views(admin):

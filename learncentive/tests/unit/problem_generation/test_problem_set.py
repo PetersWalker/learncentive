@@ -1,6 +1,7 @@
 import json
 
-from learncentive.problem_generation.problem_set import ProblemSet
+from learncentive.blueprints.problem_generation.problem_set import ProblemSet
+from learncentive.tests.fixtures import client
 
 user_results = {
     'grades': [.92, .5],

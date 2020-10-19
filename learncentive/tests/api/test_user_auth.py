@@ -1,5 +1,5 @@
+from learncentive.blueprints.users.models import User
 from learncentive.tests.fixtures import client
-from learncentive.users.models import User
 
 
 def test_register_new_user(client):
