@@ -30,7 +30,7 @@ class StagingConfig(Config):
 class DevelopmentConfig(Config):
     DEVELOPMENT = True
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'postgresql://peterwalker:7011@localhost/learncentive_test_db'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://peterwalker:7011@localhost/learncentive_dev_db'
 
 
 class TestConfig(Config):

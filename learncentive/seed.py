@@ -8,14 +8,20 @@ from learncentive.problem_generation.models import ArithemticProblem
 @click.command('seed')
 @with_appcontext
 def seed_database():
-    for problem in problem_content:
+    if input('this will drop the database are you sure? (type yes or no):  ') == 'yes':
+        db.drop_all()
+        db.create_all()
+        for problem in problem_content:
 
-        db.session.add(ArithemticProblem(
-            difficulty =problem['difficulty'],
-            format=problem['format'],
-            values_needed=problem['values_needed']
-        ))
-    db.session.commit()
+            db.session.add(ArithemticProblem(
+                difficulty =problem['difficulty'],
+                format=problem['format'],
+                values_needed=problem['values_needed']
+            ))
+
+        db.session.commit()
+    else:
+        print('aborted')
 
 
 problem_content = [

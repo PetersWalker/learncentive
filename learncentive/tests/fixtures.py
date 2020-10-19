@@ -4,6 +4,7 @@ from learncentive.app import create_app
 from learncentive.config import TestConfig
 from learncentive.extensions import db
 
+
 @pytest.fixture
 def client():
     app = create_app(TestConfig)
@@ -15,7 +16,7 @@ def client():
         yield test_client
 
 
-@pytest.fixture
+@pytest.fixture(scope='function')
 def db_context():
     app = create_app(TestConfig)
 

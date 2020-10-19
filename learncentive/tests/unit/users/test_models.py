@@ -14,7 +14,6 @@ def test_add_and_retrieve_of_user_grades(db):
                     grades=grades
                     )
     db.session.add(new_user)
-    db.session.commit()
     user = User.query.filter_by(name='admin').first()
     assert user.grades == [.95, .92]
 
