@@ -16,7 +16,7 @@ def client():
         yield test_client
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture
 def db_context():
     app = create_app(TestConfig)
 

@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import request, jsonify, render_template, Blueprint
 from flask_jwt_extended import (
     create_access_token, create_refresh_token, set_access_cookies,
     set_refresh_cookies, jwt_refresh_token_required, get_jwt_identity,
@@ -9,9 +9,16 @@ from learncentive.extensions import db
 from learncentive.blueprints.users.models import User
 from learncentive.blueprints.users.forms.login_signup import SignupForm, LoginForm
 
-users = Blueprint('users', __name__)
 
-@users.route('/register', methods=['POST'])
+blueprint = Blueprint('users', __name__, template_folder='templates')
+
+
+@blueprint.route('/account')
+def account():
+    return render_template('account.html')
+
+
+@blueprint.route('/register', methods=['POST'])
 def register():
     form = SignupForm(request.form)
     user_exists = User.query.filter_by(name=form.name.data).first()
@@ -33,7 +40,7 @@ def register():
         return 'bad request, invalid form', 400
 
 
-@users.route('/token/auth', methods=['POST'])
+@blueprint.route('/token/auth', methods=['POST'])
 def login():
     form = LoginForm(request.form)
     user = User.query.filter_by(email=form.email.data, password=form.password.data).first()
@@ -43,7 +50,7 @@ def login():
         access_token = create_access_token(identity=user.id)
         refresh_token = create_refresh_token(identity=user.id)
 
-        # construct cookies and response.
+        # set cookies and response.
         response = jsonify({'login': True})
         set_access_cookies(response, access_token)
         set_refresh_cookies(response, refresh_token)
@@ -53,7 +60,7 @@ def login():
         return jsonify({'login': False}), 401
 
 
-@users.route('/token/refresh', methods=['POST'])
+@blueprint.route('/token/refresh', methods=['POST'])
 @jwt_refresh_token_required
 def refresh():
     current_user = get_jwt_identity()
@@ -64,9 +71,8 @@ def refresh():
     return response, 200
 
 
-@users.route('/token/remove', methods=['POST'])
+@blueprint.route('/token/remove', methods=['POST'])
 def logout():
-    current_user = get_jwt_identity()
     response = jsonify({'logout': True})
     unset_jwt_cookies(response)
     return response, 200

@@ -1,8 +1,8 @@
-from flask import Blueprint, render_template, url_for
+from flask import render_template, url_for, Blueprint
 from flask_jwt_extended import jwt_required
 
 
-classroom = Blueprint(
+blueprint = Blueprint(
     'classroom',
     __name__,
     template_folder="templates",
@@ -10,9 +10,8 @@ classroom = Blueprint(
     static_url_path='/classroom/static'
 )
 
-
 @jwt_required
-@classroom.route('/classroom')
+@blueprint.route('')
 def classroom_app():
     bundle = url_for('classroom.static', filename='js/react_dist/index_bundle.js')
     return render_template('classroom.html', react_bundle=bundle)

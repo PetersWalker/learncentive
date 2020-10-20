@@ -4,12 +4,9 @@ from learncentive.extensions import db, cors, cache, jwt
 from flask_admin import Admin
 
 # Import Blueprints
-from learncentive.blueprints.users.routes import users
-from learncentive.blueprints.problem_generation.routes import problem_generation
-from learncentive.blueprints.home.routes import home
-from learncentive.blueprints.classroom.routes import classroom
-from learncentive.admin.views import configure_admin_views
+from learncentive.blueprints import users, problem_generation, home, classroom
 
+from learncentive.admin.views import configure_admin_views
 from learncentive.seed import seed_database
 
 
@@ -37,10 +34,10 @@ def register_extensions(app):
 
 
 def register_blueprints(app):
-    app.register_blueprint(users, url_prefix='/users')
-    app.register_blueprint(problem_generation, url_prefix='/problem_generation')
-    app.register_blueprint(home, url_prefix='')
-    app.register_blueprint(classroom)
+    app.register_blueprint(users.views.blueprint, url_prefix='/users')
+    app.register_blueprint(problem_generation.views.blueprint, url_prefix='/problem_generation')
+    app.register_blueprint(home.views.blueprint, url_prefix='')
+    app.register_blueprint(classroom.views.blueprint, url_prefix='/classroom')
 
 
 def register_commands(app):

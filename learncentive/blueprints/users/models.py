@@ -1,6 +1,6 @@
 from sqlalchemy.dialects.postgresql import JSON, UUID
 import uuid
-from learncentive.app import db
+from learncentive.extensions import db
 
 class User(db.Model):
     id = db.Column(UUID(as_uuid=True), default=uuid.uuid4, unique=True, primary_key=True, nullable=False)

@@ -1,8 +1,9 @@
-from flask import Blueprint, render_template
+from flask import render_template, Blueprint
+
 from learncentive.blueprints.home.static.content import catalog_content
 from learncentive.blueprints.users.forms.login_signup import SignupForm
 
-home = Blueprint(
+blueprint = Blueprint(
     'home',
     __name__,
     template_folder='templates',
@@ -11,13 +12,13 @@ home = Blueprint(
     )
 
 
-@home.route('/', methods=['GET', 'POST'])
+@blueprint.route('/', methods=['GET', 'POST'])
 def home_page():
     form = SignupForm()
     return render_template('home.html', form=form)
 
 
-@home.route('/catalog')
+@blueprint.route('/catalog')
 def catalog():
     return render_template('catalog.html', catalog_content=catalog_content)
 
