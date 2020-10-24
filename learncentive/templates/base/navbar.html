@@ -12,6 +12,8 @@
           <div class="navbar-nav">
             <a href= {{url_for('home.home_page')}} class="pl-md-0 p-3 text-decoration-none text-light">Home</a>
             <a href={{url_for('home.catalog')}} class="p-3 text-decoration-none text-light">Courses</a>
+            <a href={{url_for('admin.index')}} class="p-3 text-decoration-none text-light">admin</a>
+            {{ request.authorization }}
           </div>
         </div>
       </nav>

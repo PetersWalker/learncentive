@@ -1,4 +1,4 @@
-from flask import request, jsonify, render_template, Blueprint
+from flask import request, jsonify, render_template, Blueprint, redirect, url_for
 from flask_jwt_extended import (
     create_access_token, create_refresh_token, set_access_cookies,
     set_refresh_cookies, jwt_refresh_token_required, get_jwt_identity,
@@ -51,10 +51,10 @@ def login():
         refresh_token = create_refresh_token(identity=user.id)
 
         # set cookies and response.
-        response = jsonify({'login': True})
+        response = redirect(url_for('users.account'))
         set_access_cookies(response, access_token)
         set_refresh_cookies(response, refresh_token)
-        return response, 200
+        return response
 
     else:
         return jsonify({'login': False}), 401
