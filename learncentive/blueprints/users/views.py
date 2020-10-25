@@ -2,7 +2,7 @@ from flask import request, jsonify, render_template, Blueprint, redirect, url_fo
 from flask_jwt_extended import (
     create_access_token, create_refresh_token, set_access_cookies,
     set_refresh_cookies, jwt_refresh_token_required, get_jwt_identity,
-    unset_jwt_cookies
+    unset_jwt_cookies, jwt_required
 )
 
 from learncentive.extensions import db
@@ -14,8 +14,12 @@ blueprint = Blueprint('users', __name__, template_folder='templates')
 
 
 @blueprint.route('/account')
+@jwt_required
 def account():
-    return render_template('account.html')
+    user_id = get_jwt_identity()
+    user = User.query.filter_by(id=user_id).first()
+
+    return render_template('account.html', user=user)
 
 
 @blueprint.route('/register', methods=['POST'])
