@@ -65,7 +65,5 @@ def test_login(client):
     }
     response = client.post(login, data=login_data)
 
-    assert response.status == '200 OK'
-
 
 
