@@ -1,16 +1,16 @@
 from learncentive.tests.fixtures import client
 
-template_urls = [
-    '',
-    '/catalog',
-    '/users/account',
-    '/classroom',
-    '/admin'
-]
+'''These tests are for non logged in user'''
+
+template_urls = {
+    '/': '200 OK',
+    '/catalog': '200 OK',
+    '/users/account': '401 UNAUTHORIZED',
+    '/classroom': '401 UNAUTHORIZED',
+}
 
 
 def test_status_of_template_routes(client):
-    for url in template_urls:
-        status = client.get(url).status
-        assert (status == '200 OK') or (status == '308 PERMANENT REDIRECT'), \
-            'check the templating imports {} returned {}'.format(url, status)
+    for url, status in template_urls.items():
+        result = client.get(url).status
+        assert result == status, "'{}' returned {} vice {}".format(url, result, status)
