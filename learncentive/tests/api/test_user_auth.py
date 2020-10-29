@@ -54,8 +54,8 @@ def test_login(client):
         'email': 'peter@learncentive.com',
         'password': 'testpass',
         'confirm': 'testpass'
-
     }
+
     client.post(register, data=register_data)
 
     login = 'users/token/auth'

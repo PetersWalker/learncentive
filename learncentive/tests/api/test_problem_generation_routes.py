@@ -1,14 +1,14 @@
 import json
 from learncentive.tests.assertions import assert_correct_problem_set_schema
-from learncentive.tests.fixtures import client
+from learncentive.tests.fixtures import authorized_client
 
 
-def test_problem_set_a_la_carte_returns_correct_schema(client):
-    api_response = client.get('/problem_generation/5/2')
+def test_problem_set_a_la_carte_returns_correct_schema(authorized_client):
+    api_response = authorized_client.get('/problem_generation/5/2')
     assert_correct_problem_set_schema(api_response)
 
 
-def test_problem_set_generator_iteratively_returns_correct_schema(client):
+def test_problem_set_generator_iteratively_returns_correct_schema(authorized_client):
     user_results = {
         'grades': [.92, .5],
         'graded': False,
@@ -21,17 +21,18 @@ def test_problem_set_generator_iteratively_returns_correct_schema(client):
 
     # first iteration
     json_request1 = json.dumps(user_results)  # py object -> json string
-    api_response1 = client.get('problem_generation/{}'.format(json_request1))  # json string -> response object
+    api_response1 = authorized_client.get('problem_generation/{}'.format(json_request1))  # json string -> response object
     assert api_response1.status == '200 OK'
     assert_correct_problem_set_schema(api_response1)
 
     # second iteration
     json_request2 = json.dumps(api_response1.json)  # response object -> jsonb bytes -> json string
-    api_response2 = client.get('problem_generation/{}'.format(json_request2))
+    api_response2 = authorized_client.get('problem_generation/{}'.format(json_request2))
     assert api_response2.status == '200 OK'
     assert_correct_problem_set_schema(api_response2)
 
-# def test_problem_set_request_with_no_url_data(client):
-#     api_response = client.get('/api/problem_generation')
-#     assert api_response.status == '200 OK'
-#     assert_correct_problem_set_schema(api_response)
+def test_problem_set_request_with_no_url_data(authorized_client):
+    first = json.dumps('first')
+    api_response = authorized_client.get('problem_generation/{}'.format(first))
+    assert api_response.status == '200 OK'
+    assert_correct_problem_set_schema(api_response)

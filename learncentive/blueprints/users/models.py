@@ -4,10 +4,10 @@ from learncentive.extensions import db
 
 class User(db.Model):
     id = db.Column(UUID(as_uuid=True), default=uuid.uuid4, unique=True, primary_key=True, nullable=False)
-    name = db.Column(db.String(80), unique=True, nullable=False)
+    name = db.Column(db.String(80), unique=False, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(120), unique=False, nullable=False)
-    grades = db.Column(JSON)
+    grades = db.Column(JSON, default=[0])
 
 class Grades(db.Model):
     id = db.Column(db.Integer, primary_key=True)

@@ -12,8 +12,6 @@ class ProblemSet():
             set of s certain difficulty
             """
     def __init__(self, results):
-        # self.quantity = results['quantity']
-        # self.correct = results['correct']
         self.grades = results['grades']
         self.graded = False
         self.problems = results['problems']
