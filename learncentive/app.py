@@ -1,6 +1,6 @@
 from flask import Flask
 
-from learncentive.extensions import db, cors, cache, jwt
+from learncentive.extensions import db, cache, jwt
 from flask_admin import Admin
 
 # Import Blueprints
@@ -28,7 +28,6 @@ def create_app(config_obj):
 
 def register_extensions(app):
     db.init_app(app)
-    cors.init_app(app)
     cache.init_app(app)
     jwt.init_app(app)
 

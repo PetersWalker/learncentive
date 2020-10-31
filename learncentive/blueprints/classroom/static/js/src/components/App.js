@@ -20,19 +20,22 @@ class App extends Component {
   };
 
   fetchNewProblemSet() {
-    var url = "http://localhost:5000/api/problem_set_generator"
+    var url = "http://localhost:5000/problem_generation"
     if (this.state.data) {
-      url = url.contcat(JSON.stringify(this.state.data))
+      url = url.concat('/' + JSON.stringify(this.state.data))
     }
+    else { url = url.concat('/first') }
+
     fetch(url, {
-      mode: "cors"
+      mode: "cors",
+      credentials: "include"
     })
       .then(res => res.json())
       .then(
           (result) => {
           this.setState({
             isLoaded: true,
-            data: JSON.parse(result)
+            data: result
           });
         },
         (error) => {

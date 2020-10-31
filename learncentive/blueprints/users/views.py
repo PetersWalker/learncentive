@@ -64,7 +64,7 @@ def login():
         return jsonify({'login': False}), 401
 
 
-@blueprint.route('/token/refresh', methods=['POST'])
+@blueprint.route('/token/refresh', methods=['POST', 'GET'])
 @jwt_refresh_token_required
 def refresh():
     current_user = get_jwt_identity()

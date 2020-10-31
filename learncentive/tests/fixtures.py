@@ -30,7 +30,6 @@ def authorized_client():
         yield test_client
 
 
-
 @pytest.fixture
 def db_context():
     app = create_app(TestConfig)
@@ -40,11 +39,10 @@ def db_context():
         yield db
 
 
-
 def seed_test_db():
     for problem in problem_content:
         db.session.add(ArithemticProblem(
-            difficulty =problem['difficulty'],
+            difficulty=problem['difficulty'],
             format=problem['format'],
             values_needed=problem['values_needed']
         ))

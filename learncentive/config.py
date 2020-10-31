@@ -15,7 +15,7 @@ class Config:
     JWT_TOKEN_LOCATION = 'cookies'
     JWT_COOKIE_CSRF_PROTECT = False
     JWT_ACCESS_COOKIE_PATH = '/'
-    JWT_REFRESH_COOKIE_PATH = '/token/refresh'
+    JWT_REFRESH_COOKIE_PATH = '/users/token/refresh'
 
 
 class ProductionConfig(Config):
