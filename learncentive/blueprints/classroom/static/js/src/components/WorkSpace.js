@@ -22,7 +22,8 @@ class WorkSpace extends Component {
       if (this.props.problems[this.state.counter]['answer'] == value) {
         this.setState({
           answer_status: 'correct'
-        })
+        });
+        this.props.problems[this.state.counter]['correct'] = true;
       } else { this.setState({answer_status: 'wrong'}) }
 
       this.setState({ counter: this.state.counter + 1})

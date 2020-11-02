@@ -17,7 +17,7 @@ user_results = {
     grades are preserved from previous difficulties
     grades are rounded up to hundreth place'''
 
-def test_new_problem_set_from_old_problem_set():
+def test_new_problem_set_generated_from_old_problem_set():
     old_set = ProblemSet(user_results)
     new_set = old_set.new_problem_set()
     assert isinstance(new_set, ProblemSet)
@@ -30,7 +30,7 @@ def test_problem_set_from_grades():
     set_from_grades = ProblemSet.from_grades(grades)
     assert isinstance(set_from_grades, ProblemSet)
 
-def test_problem_set_generates_1001_problem_set_alacart():
+def test_problem_set_generates_arbitrary_number_of_problem_alacart():
      test_set = ProblemSet.alacarte(amount_of_probs=2000, type_of_prob=0)
      assert len(test_set.problems) == 2000
 
@@ -39,6 +39,3 @@ def test_problem_set_is_json_serializable():
     json_data = json.dumps(vars(new_set))
     assert isinstance(json_data, str)
 
-# def test_problem_set_from_data_base_grades():
-#     new_set = ProblemSet.from_grades()
-#     assert isinstance(new_set, ProblemSet)

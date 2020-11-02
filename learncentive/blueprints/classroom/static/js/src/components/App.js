@@ -83,7 +83,7 @@ export default App;
 //    {'grades': [.92, .5]
 //     'graded': False,
 //     'problems': [
-//         {'question': '', 'answer':'', 'difficulty': 0, 'result':True},
+//         {'question': '', 'answer':'', 'difficulty': 0, 'result':False},
 //         {'question': '', 'answer':'', 'difficulty': 0, 'result':False},
 //         {'question': '', 'answer':'', 'difficulty': 1, 'result':False}
 //         ],
