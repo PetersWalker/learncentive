@@ -34,7 +34,7 @@ class WorkSpace extends Component {
   render() {
       return(
           <div className="workspace">
-            <ProblemDisplay counter={this.state.counter} problems={this.props.problems}/>
+            <ProblemDisplay problems={this.props.problems}/>
             <ResultDisplay answer_status={this.state.answer_status}/>
             <InputForm handleAnswerSubmission={this.handleAnswerSubmission}/>
           </div>

@@ -6,7 +6,6 @@ class ProblemDisplay extends Component {
       return (
         <>
           <h1>{this.props.problems[this.props.counter]['question']}</h1>
-          <h2>{this.props.counter}</h2>
         </>
         );
     }
