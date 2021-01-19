@@ -6,8 +6,8 @@ from flask_jwt_extended import (
 )
 
 from learncentive.extensions import db
-from learncentive.blueprints.users.models import User
-from learncentive.blueprints.users.forms.login_signup import SignupForm, LoginForm
+from learncentive.blueprints.classroom.models import User
+from learncentive.blueprints.auth.forms.login_signup import SignupForm, LoginForm
 
 
 blueprint = Blueprint('users', __name__, template_folder='templates')
@@ -33,8 +33,8 @@ def register():
         user = User(
             name=form.name.data,
             email=form.email.data,
-            password=form.password.data,
-            grades=[0])
+            password=form.password.data
+        )
         db.session.add(user)
         db.session.commit()
         response = jsonify({'register': True})

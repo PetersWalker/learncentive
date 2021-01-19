@@ -30,10 +30,6 @@ def test_problem_set_from_grades():
     set_from_grades = ProblemSet.from_grades(grades)
     assert isinstance(set_from_grades, ProblemSet)
 
-def test_problem_set_generates_arbitrary_number_of_problem_alacart():
-     test_set = ProblemSet.alacarte(amount_of_probs=2000, type_of_prob=0)
-     assert len(test_set.problems) == 2000
-
 def test_problem_set_is_json_serializable():
     new_set = ProblemSet(user_results).new_problem_set()
     json_data = json.dumps(vars(new_set))

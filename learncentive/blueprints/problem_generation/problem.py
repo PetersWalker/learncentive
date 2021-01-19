@@ -5,9 +5,9 @@ from learncentive.blueprints.problem_generation import config
 
 index = config.cache_index
 
-def generate(*type_of_prob):
+def generate_problem(*type_of_prob):
     if type_of_prob is None:
-        raise "learncentive: No Problem Type Specified"
+        raise Exception("learncentive: No Problem Type Specified")
     elif len(type_of_prob) == 1:
         only_type, = type_of_prob
         problem = problem_catalog[only_type]()

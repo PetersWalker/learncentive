@@ -1,4 +1,4 @@
-from learncentive.blueprints.users.models import User
+from learncentive.blueprints.classroom.models import User
 from learncentive.tests.fixtures import client
 
 
@@ -17,7 +17,7 @@ def test_register_new_user(client):
     db_user = User.query.filter_by(name='pete').first()
     assert db_user.email == 'peter@learncentive.com'
     assert db_user.password == 'testpass'
-    assert db_user.grades == [0]
+
 
 
 def test_user_already_registerd(client):
@@ -27,7 +27,6 @@ def test_user_already_registerd(client):
         'email': 'peter@learncentive.com',
         'password': 'testpass',
         'confirm': 'testpass'
-
     }
 
     client.post(route, data=form_data)

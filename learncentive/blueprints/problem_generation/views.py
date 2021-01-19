@@ -1,27 +1,28 @@
-import os
 from flask import jsonify, json, Blueprint, make_response
 from flask_jwt_extended import get_jwt_identity, jwt_required
-from flask_cors import CORS
 
 from .problem_set import ProblemSet
-from learncentive.blueprints.users.models import User
-from learncentive.utils import jwt_required_else_redirect
+from learncentive.blueprints.classroom.models import User
+# from learncentive.utils import jwt_required_else_redirect
 
 
 blueprint = Blueprint('problem_generation', __name__)
-CORS(blueprint)
 
+"""
 
-# API routes serving React app in classroom template
-@blueprint.route('/<int:amount_of_probs>/<int:type_of_prob>', methods=['GET'])
-@jwt_required_else_redirect
-def problem_set_a_la_carte(amount_of_probs, type_of_prob):
-    new_problem_set = ProblemSet.alacarte(amount_of_probs, type_of_prob)
+DEPRECIATED, NO LONGER TESTED
+
+# API routes serving problems to the React app in classroom template
+@blueprint.route('/<int:amount_of_probs>/<int:difficulty>/<int:course_id>', methods=['GET'])
+@jwt_required
+def problem_set_a_la_carte(amount_of_probs=10, difficulty=0, course_id=0):
+    new_problem_set = ProblemSet.alacarte(amount_of_probs, difficulty, course_id)
     return jsonify(vars(new_problem_set))
-
+    
+"""
 
 @blueprint.route('/<string:json_data>', methods=['GET'])
-@jwt_required_else_redirect
+@jwt_required
 def problem_set_from_old(json_data):
 
     if json_data == 'first':
@@ -44,7 +45,7 @@ def problem_set_from_old(json_data):
 
 
 """ API response is of the form:
-   {'grades': [.92, .5]
+   {'grades': [.92, .5] 
     'graded': False,
     'problems': [
         {'question': '', 'answer':'', 'difficulty': 0, 'result':True},

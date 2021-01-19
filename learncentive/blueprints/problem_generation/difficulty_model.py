@@ -5,6 +5,8 @@ class DifficultyModel():
     When generating a new ProblemSet, a request will be made to an instance of the
     Difficulty Model Class which will dictate the quantity of problems and
     difficulty of those problems.
+
+    These class attributes below hard code the difficulty configuration
     """
     problem_set_size = 10
     hard_problem_ratio = .2
@@ -12,7 +14,7 @@ class DifficultyModel():
 
     def __init__(self, grades):
         self.hard_problems = math.ceil(self.hard_problem_ratio * self.problem_set_size)
-        self.easy_problems = self. problem_set_size - self.hard_problems
+        self.easy_problems = self.problem_set_size - self.hard_problems
 
 
         for difficulty in range(len(grades)):

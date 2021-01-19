@@ -1,7 +1,9 @@
 from learncentive.blueprints.problem_generation.difficulty_model import DifficultyModel
-from learncentive.blueprints.problem_generation.problem import generate as generate_problem
+from learncentive.blueprints.problem_generation.problem import generate_problem
+from learncentive.extensions import db
 
-class ProblemSet():
+
+class ProblemSet:
     """ The ProblemSet class generates Problem Content to be
     exposed to the Frontend API. it does this in one of three ways:
             1. It grades a returning ProblemSet (results) from the user to
@@ -9,7 +11,7 @@ class ProblemSet():
             is dictated by the DifficultyModel.
             2. It looks at previous grades (possibly from the database).
             3. It generates problems alacarte, that is choosing a monodifficulty
-            set of s certain difficulty
+            set of a certain difficulty
             """
     def __init__(self, results):
         self.grades = results['grades']
@@ -27,25 +29,12 @@ class ProblemSet():
 
         diff_model = DifficultyModel(grades)
         quantity = diff_model.generate_problem_quantity()
-        new_problem_set['problems'] = cls._generate_problems(quantity)
+        new_problem_set['problems'] = cls._generate_problem_set(quantity)
 
         new_problem_set = cls(new_problem_set)
 
         return new_problem_set
 
-    @classmethod
-    def alacarte(cls, amount_of_probs=10, type_of_prob=0):
-        quantity = {type_of_prob: amount_of_probs}
-        grades = [ 1 for i in range(type_of_prob)]
-        grades.append(0)
-        new_set = {
-            'grades': grades,
-            'graded': False,
-            'problems': cls._generate_problems(quantity)
-        }
-
-        problem_set = cls(new_set)
-        return problem_set
 
     def new_problem_set(self):
         if self.graded is False:
@@ -86,7 +75,7 @@ class ProblemSet():
             self.graded = True
 
     @staticmethod
-    def _generate_problems(quantity):
+    def _generate_problem_set(quantity):
         problems = []
         for k, v in quantity.items():
 #                {0:8, 1:2}
@@ -102,3 +91,26 @@ class ProblemSet():
                 v -= 1
 
         return problems
+
+
+""" 
+    DEPRECIATED, NO LONGER Tested
+
+    @classmethod
+    def alacarte(cls, amount_of_probs, difficulty, course_id):
+
+
+        #Generate grades that default to 100% for each problem difficulty below the specified difficulty
+        quantity = {difficulty: amount_of_probs}
+        grades = [1 for i in range(difficulty)]
+        grades.append(0)
+
+        new_set = {
+            'course_id': h,
+            'grades': grades,
+            'graded': False,
+            'problems': cls._generate_problem_set(quantity)
+        }
+
+        problem_set = cls(new_set)
+        return problem_set"""

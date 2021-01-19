@@ -1,7 +1,7 @@
 from flask import render_template, Blueprint
 
 from learncentive.blueprints.home.static.content import catalog_content
-from learncentive.blueprints.users.forms.login_signup import SignupForm
+from learncentive.blueprints.auth.forms.login_signup import SignupForm
 
 blueprint = Blueprint(
     'home',
